@@ -10,6 +10,7 @@ import Contact from "@/components/Inquiry/Contact";
 import BCTA from "@/components/Inquiry/BCTA";
 import Whychoose2 from "@/components/Inquiry/Whychoose2";
 import FeatureStripInquiry from "@/components/Inquiry/FacilitybarInquiry";
+import TabForm from "@/components/Inquiry/TabForm";
 
 export default function Inquiry() {
   return (
@@ -18,6 +19,7 @@ export default function Inquiry() {
       <Hero></Hero>
       <FeatureStripInquiry></FeatureStripInquiry>
       <Products></Products>
+      <TabForm/>
       <WhyChoose></WhyChoose>
       {/* <AboutUsSection></AboutUsSection> */}
       <Whychoose2></Whychoose2>

@@ -69,6 +69,9 @@ const product = [
   //   desc: "Premium titanium dioxide with excellent opacity.",
   // },
 ];
+
+
+
 //  const products = [
 //     "Titanium Dioxide",
 //     "Titanium Dioxide Rutile",

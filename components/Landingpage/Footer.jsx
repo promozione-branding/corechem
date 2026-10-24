@@ -52,6 +52,7 @@ const products = [
 ];
 
 import { categories } from "@/Data";
+import { FaWarehouse } from "react-icons/fa";
 
 export default function Footer() {
   const [oopen, setoopen] = useState(false);
@@ -105,16 +106,41 @@ export default function Footer() {
 
                 <div className="mt-[28px] space-y-[16px]">
                   {/* ADDRESS */}
-                  <div className="flex items-start gap-[14px]">
-                    <div className="flex h-[42px] w-[42px] min-w-[42px] items-center justify-center rounded-full bg-[#fff]/80 text-[#4B3089]">
-                      <MapPin size={18} />
-                    </div>
+                  {/* Head Office */}
+<div className="flex items-start gap-[14px]">
+  <div className="flex h-[42px] w-[42px] min-w-[42px] items-center justify-center rounded-full bg-white/80 text-[#4B3089]">
+    <MapPin size={18} />
+  </div>
 
-                    <p className="text-[15px] leading-[28px] text-white">
-                      Office No- 101-E, Crown Heights, Swarn Jayanti Park,
-                      Sector 10, Rohini, Delhi, 110085
-                    </p>
-                  </div>
+  <p className="text-[15px] leading-[28px] text-white">
+    <span className="font-bold">Head Office:</span>{" "}
+    Office No. 101-E, Crown Heights, Swarn Jayanti Park,
+    Sector 10, Rohini, Delhi - 110085
+  </p>
+</div>
+<div className="flex items-start gap-[14px]">
+  <div className="flex h-[42px] w-[42px] min-w-[42px] items-center justify-center rounded-full bg-white/80 text-[#4B3089]">
+    <MapPin size={18} />
+  </div>
+
+  <p className="text-[15px] leading-[28px] text-white">
+    <span className="font-bold">Office Address:</span>{" "}
+   K p ethitom Near, lake, Makarba, Ahmedabad, Gujarat 380051
+  </p>
+</div>
+
+{/* Warehouse Location */}
+<div className="mt-5 flex items-start gap-[14px]">
+  <div className="flex h-[42px] w-[42px] min-w-[42px] items-center justify-center rounded-full bg-white/80 text-[#4B3089]">
+    <FaWarehouse size={18} />
+  </div>
+
+  <p className="text-[15px] leading-[28px] text-white">
+    <span className="font-bold">Warehouse Address:</span>{" "}
+    M-213, Bawana Industrial Area, Sector 3,
+    Near Shyam Dharam Kanta, Delhi - 110039
+  </p>
+</div>
 
                   {/* PHONE */}
                   <div className="flex items-center gap-[14px]">
@@ -161,16 +187,7 @@ export default function Footer() {
                 </div>
 
                 {/* CTA */}
-                <a
-                  href="https://wa.me/919818544039"
-                  className="group mt-[24px] w-fit   flex h-[58px] items-center gap-[12px] rounded-full bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] px-[26px] text-[14px] font-[700] uppercase tracking-[1px] text-white transition-all duration-300 hover:bg-white hover:text-[#111827]"
-                >
-                  Get Bulk Pricing
-                  <ArrowUpRight
-                    size={18}
-                    className="transition-all duration-300 group-hover:rotate-45"
-                  />
-                </a>
+               
               </div>
             </div>
 
@@ -256,6 +273,17 @@ export default function Footer() {
                 outstanding business practices, and dedication to building trust
                 with their customers.
               </p>
+
+               <a
+                  href="https://wa.me/919818544039"
+                  className="group mt-[24px] w-fit   flex h-[58px] items-center gap-[12px] rounded-full bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] px-[26px] text-[14px] font-[700] uppercase tracking-[1px] text-white transition-all duration-300 hover:bg-white hover:text-[#111827]"
+                >
+                  Get Bulk Pricing
+                  <ArrowUpRight
+                    size={18}
+                    className="transition-all duration-300 group-hover:rotate-45"
+                  />
+                </a>
             </div>
           </div>
 

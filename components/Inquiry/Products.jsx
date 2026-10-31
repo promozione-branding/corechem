@@ -224,7 +224,7 @@ export default function Products() {
                     </button>
 
                     <Link
-                      href={"https://wa.link/2fpjmq"}
+                        href="https://wa.me/919818544039"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleWhatsappClick({ source: "Website inquiry page", obj: product.grade })
@@ -255,7 +255,7 @@ export default function Products() {
             </div>
 
             <Link
-              href="https://wa.link/2fpjmq"
+                href="https://wa.me/919818544039"
               onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}
               target="_blank"
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[#c8921c] to-[#e6b53a] px-5 py-3 md:px-8 md:py-4 font-semibold text-white shadow-[0_10px_30px_rgba(200,146,28,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(200,146,28,0.5)]"

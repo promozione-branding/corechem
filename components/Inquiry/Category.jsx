@@ -55,7 +55,7 @@ function CategoryCard({ category ,setIsOpen}) {
         </h3>
 
         <div>
-        <a onClick={(e)=>{e.stopPropagation()}}  href={"https://wa.link/2fpjmq"} className="mt-3 w-full text-center block bg-[#c8921c] text-white py-2.5 rounded-xl font-medium hover:bg-[#b88418] transition">
+        <a onClick={(e)=>{e.stopPropagation()}}   href="https://wa.me/919818544039" className="mt-3 w-full text-center block bg-[#c8921c] text-white py-2.5 rounded-xl font-medium hover:bg-[#b88418] transition">
            Enquire Now
         </a>
         </div>

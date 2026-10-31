@@ -172,7 +172,7 @@ export default function Deals() {
                             e.stopPropagation();
                             handleWhatsappClick({ source: "Website inquiry page", obj: item.grade })
                           }}
-                          href={`https://wa.link/2fpjmq`}
+                           href="https://wa.me/919818544039"
                           className="mt-5 whitespace-nowrap flex items-center justify-around gap-2 text-green-500 text-[15px] font-[700]"
                         >
                           Get WhatsApp

@@ -21,7 +21,7 @@ export default function BCTA() {
 
           {/* CTA Button */}
           <Link onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}
-            href="https://wa.link/2fpjmq"
+            href="https://wa.me/919818544039"
             target="_blank"
             className="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 font-semibold text-[#16a34a] shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >

@@ -1,21 +1,23 @@
 'use client'
+import { handleWhatsappClick } from "@/lib/track";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
 
 const Whatsapp = () => {
   const pathname = usePathname();
-  
-    // Hide Navbar/Footer on /studio routes
-     const hideLayout =
-      pathname.startsWith("/studio") ||
-      pathname.startsWith("/login") ||
-      pathname.startsWith("/inquiry");
+
+  // Hide Navbar/Footer on /studio routes
+  const hideLayout =
+    pathname.startsWith("/studio") ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/inquiry");
   return (
     <>
-      
+
       {!hideLayout && <a
-         href={"https://wa.link/2fpjmq"}
+        onClick={() => handleWhatsappClick({ source: "Sticky WhatsApp", })}
+        href={"https://wa.link/2fpjmq"}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp with corechem corporation"
@@ -25,7 +27,7 @@ const Whatsapp = () => {
       </a>}
 
 
-      
+
     </>
   );
 };

@@ -1,8 +1,9 @@
+import { handleCallClick, handleWhatsappClick } from "@/lib/track";
 import Link from "next/link";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
-export default function CTACity({city}) {
+export default function CTACity({ city }) {
   return (
     <>
       <section className="w-full bg-[#062347] text-white py-8 md:py-10">
@@ -35,20 +36,20 @@ export default function CTACity({city}) {
           </div>{" "}
           <div className="flex flex-col whitespace-normal gap-4">
             {" "}
-            <a
+            <a onClick={() => handleCallClick({ source: "Website city page", obj: "N/A" })}
               href="tel:+919818544039"
               className="bg-[#C8921C] hover:bg-[#b17f16] text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center"
             >
               {" "}
               Call Now{" "}
             </a>{" "}
-            <a
+            <a onClick={() => handleWhatsappClick({ source: "Website city page", obj: "N/A" })}
               href="https://wa.me/919818544039"
               target="_blank"
               className="bg-white text-[#062347] flex gap-2  justify-between items-center whitespace-nowrap hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold transition-all duration-300 text-center"
             >
-            
-              WhatsApp Us <FaWhatsapp size={30}/>
+
+              WhatsApp Us <FaWhatsapp size={30} />
             </a>{" "}
           </div>{" "}
         </div>{" "}

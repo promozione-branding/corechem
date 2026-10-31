@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { FaPhoneAlt, FaWhatsapp, FaClipboardList } from "react-icons/fa";
 import ContactForm from "../Popup";
+import { handleCallClick } from "@/lib/track";
 
 export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -27,10 +28,10 @@ export default function Header() {
     const timer = setTimeout(() => {
       setIsOpen(true);
     }, 5000);
-  
+
     return () => clearTimeout(timer);
   }, []);
-  
+
 
   return (
     <header className="sticky top-0 z-[9999] w-full bg-white shadow-sm">
@@ -64,14 +65,14 @@ export default function Header() {
 
         <div className="flex items-center gap-5 text-white">
 
-          
+
 
           <button
-  onClick={() => setIsOpen(true)}
-  className="bg-[#c8921c] hidden md:block px-7 py-[11px] text-[14px] font-semibold text-white hover:bg-[#b88312]"
->
-  Get Free Quote →
-</button>
+            onClick={() => setIsOpen(true)}
+            className="bg-[#c8921c] hidden md:block px-7 py-[11px] text-[14px] font-semibold text-white hover:bg-[#b88312]"
+          >
+            Get Free Quote →
+          </button>
 
         </div>
       </div>
@@ -92,7 +93,7 @@ export default function Header() {
               className="h-auto w-[200px] sm:w-[220px] lg:w-[340px]"
             />
           </Link>
-                    <div><a href="tel:+919818544039"  className="bg-[#c8921c] md:hidden px-2 py-3 text-xs text-white rounded-xl">Get Free Quote</a></div>
+          <div><a href="tel:+919818544039" className="bg-[#c8921c] md:hidden px-2 py-3 text-xs text-white rounded-xl">Get Free Quote</a></div>
 
 
           {/* DESKTOP MENU */}
@@ -115,15 +116,15 @@ export default function Header() {
             {/* PRODUCTS */}
             <div className="group relative">
 
-<Link href="/inquiry">
+              <Link href="/inquiry">
 
 
-              <button className="flex items-center gap-2 font-semibold text-[17px] hover:text-[#c8921c]">
-                Our Products
-              </button>
-</Link>
+                <button className="flex items-center gap-2 font-semibold text-[17px] hover:text-[#c8921c]">
+                  Our Products
+                </button>
+              </Link>
 
-              
+
             </div>
 
             {/* <Link
@@ -154,7 +155,7 @@ export default function Header() {
                 Call Anytime
               </p>
 
-              <a
+              <a onClick={() => handleCallClick({ source: "Website inquiry page", obj: "N/A" })}
                 href="tel:+919818544039"
                 className="font-bold text-[#062347]"
               >
@@ -181,11 +182,10 @@ export default function Header() {
 
       <div
         className={`xl:hidden fixed top-0 right-0 h-screen w-[320px] bg-white shadow-2xl transition-all duration-300 z-[999999]
-        ${
-          mobileMenu
+        ${mobileMenu
             ? "translate-x-0"
             : "translate-x-full"
-        }`}
+          }`}
       >
 
         <div className="flex items-center justify-between border-b p-5">
@@ -212,17 +212,17 @@ export default function Header() {
             Industries
           </Link>
 
-          
+
 
           <Link href="/inquiry" className="py-3 font-medium">
             Contact Us
           </Link>
 
           <div className="mt-6 border-t pt-5">
-<Link href="#">
-            
+            <Link href="#">
 
-</Link>
+
+            </Link>
 
             {/* <div className="max-h-[300px] overflow-y-auto">
 
@@ -238,61 +238,61 @@ export default function Header() {
             </div> */}
           </div>
 
-          <a
+          <a onClick={() => handleCallClick({ source: "Website inquiry page", obj: "N/A" })}
             href="tel:+919818544039"
             className="mt-6 rounded-lg bg-[#c8921c] py-3 text-center font-semibold text-white"
           >
             Call Now
           </a>
-          <a
-  href="https://wa.link/2fpjmq"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-green-600 px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-green-700 hover:shadow-xl"
->
-  <FaWhatsapp className="text-2xl" />
-  <span>Connect on WhatsApp</span>
-</a>
-
-        </div>
-      </div>
-      
-
-{isOpen && <ContactForm isOpen={isOpen} setIsOpen={setIsOpen} />}
-<div className="fixed bottom-0 left-0 right-0 z-[9999] block md:hidden">
-      <div className="mx-2 mb-2 overflow-hidden rounded-2xl border border-white/10 bg-[#062347]/95 shadow-[0_-5px_30px_rgba(0,0,0,0.25)] backdrop-blur-md">
-        <div className="grid grid-cols-3">
-          
-          {/* CALL */}
-          <Link
-            href="tel:+919818544039"
-            className="flex flex-col items-center justify-center gap-1 border-r border-white/10 py-3 text-white transition hover:bg-white/10"
-          >
-            <FaPhoneAlt className="text-lg text-[#c8921c]" />
-            <span className="text-xs font-semibold">Call</span>
-          </Link>
-
-          {/* ENQUIRY */}
-          <button
-            onClick={() => setIsOpen(true)} // Your enquiry modal state
-            className="flex flex-col items-center justify-center gap-1 border-r border-white/10 py-3 text-white transition hover:bg-white/10"
-          >
-            <FaClipboardList className="text-lg text-[#c8921c]" />
-            <span className="text-xs font-semibold">Enquiry</span>
-          </button>
-
-          {/* WHATSAPP */}
-          <Link
+          <a onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}
             href="https://wa.link/2fpjmq"
             target="_blank"
-            className="flex flex-col items-center justify-center gap-1 bg-[#25D366] py-3 text-white"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-green-600 px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-green-700 hover:shadow-xl"
           >
-            <FaWhatsapp className="text-xl" />
-            <span className="text-xs font-bold">WhatsApp</span>
-          </Link>
+            <FaWhatsapp className="text-2xl" />
+            <span>Connect on WhatsApp</span>
+          </a>
+
         </div>
       </div>
-    </div>
+
+
+      {isOpen && <ContactForm isOpen={isOpen} setIsOpen={setIsOpen} />}
+      <div className="fixed bottom-0 left-0 right-0 z-[9999] block md:hidden">
+        <div className="mx-2 mb-2 overflow-hidden rounded-2xl border border-white/10 bg-[#062347]/95 shadow-[0_-5px_30px_rgba(0,0,0,0.25)] backdrop-blur-md">
+          <div className="grid grid-cols-3">
+
+            {/* CALL */}
+            <Link onClick={() => handleCallClick({ source: "Website inquiry page", obj: "N/A" })}
+              href="tel:+919818544039"
+              className="flex flex-col items-center justify-center gap-1 border-r border-white/10 py-3 text-white transition hover:bg-white/10"
+            >
+              <FaPhoneAlt className="text-lg text-[#c8921c]" />
+              <span className="text-xs font-semibold">Call</span>
+            </Link>
+
+            {/* ENQUIRY */}
+            <button
+              onClick={() => setIsOpen(true)} // Your enquiry modal state
+              className="flex flex-col items-center justify-center gap-1 border-r border-white/10 py-3 text-white transition hover:bg-white/10"
+            >
+              <FaClipboardList className="text-lg text-[#c8921c]" />
+              <span className="text-xs font-semibold">Enquiry</span>
+            </button>
+
+            {/* WHATSAPP */}
+            <Link onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}
+              href="https://wa.link/2fpjmq"
+              target="_blank"
+              className="flex flex-col items-center justify-center gap-1 bg-[#25D366] py-3 text-white"
+            >
+              <FaWhatsapp className="text-xl" />
+              <span className="text-xs font-bold">WhatsApp</span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }

@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 
 import { redirect } from "next/navigation";
+import { handleCallClick, handleWhatsappClick } from "@/lib/track";
 
 export default function InquiryProductPageClient({ params }) {
   const { id } = React.use(params);
@@ -194,7 +195,7 @@ export default function InquiryProductPageClient({ params }) {
 
             {/* BUTTONS */}
             <div className="mt-10 flex flex-wrap gap-4">
-              <a
+              <a onClick={() => handleCallClick({ source: "Website inquiry page", obj: product.name })}
                 href="tel:+919818544039"
                 // onClick={() => setIsFormOpen(true)}
                 className="group inline-flex items-center gap-2 rounded-xl bg-[#BE8220] px-7 py-4 font-semibold text-white shadow-xl transition hover:bg-[#e5b712] capitalize"
@@ -203,7 +204,7 @@ export default function InquiryProductPageClient({ params }) {
                 <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
               </a>
 
-              <a
+              <a onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: product.name })}
                 href={`https://wa.me/+919818544039?text=Hello I am interested in ${product.name}`}
                 target="_blank"
                 className="inline-flex items-center gap-2 rounded-xl border border-green-200 bg-green-50 px-7 py-4 font-semibold text-green-700 transition hover:bg-green-100"
@@ -238,11 +239,10 @@ export default function InquiryProductPageClient({ params }) {
                     <button
                       key={i}
                       onClick={() => setActiveImage(img)}
-                      className={`overflow-hidden rounded-2xl border-2 transition ${
-                        activeImage === img
-                          ? "border-[#BE8220]"
-                          : "border-gray-200"
-                      }`}
+                      className={`overflow-hidden rounded-2xl border-2 transition ${activeImage === img
+                        ? "border-[#BE8220]"
+                        : "border-gray-200"
+                        }`}
                     >
                       <Image
                         src={img.src}
@@ -460,7 +460,7 @@ export default function InquiryProductPageClient({ params }) {
                         Brochure
                       </a>
 
-                      <a
+                      <a onClick={() => handleCallClick({ source: "Website inquiry page", obj: "N/A" })}
                         href="tel:+919818544039"
                         className="flex items-center justify-center gap-2 rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm font-semibold text-[#BE8220] transition hover:bg-orange-100"
                       >

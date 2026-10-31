@@ -1,7 +1,8 @@
+import { handleCallClick, handleWhatsappClick } from "@/lib/track";
 import React from "react";
 import { FaPhoneAlt, FaArrowRight } from "react-icons/fa";
 
-export default function BelowCTA({city}) {
+export default function BelowCTA({ city }) {
   return (
     <section className="relative overflow-hidden py-2 md:py-9 bg-[#062347]">
       {" "}
@@ -15,7 +16,7 @@ export default function BelowCTA({city}) {
         {" "}
         <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-4 md:p-8 text-center">
           {" "}
-          
+
           <h2 className="mt-6 text-3xl md:text-5xl font-bold text-white leading-tight max-w-4xl mx-auto">
             {" "}
             Ready to Source Premium{" "}
@@ -45,15 +46,15 @@ export default function BelowCTA({city}) {
           {/* CTA Buttons */}{" "}
           <div className="mt-5  md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             {" "}
-            <a
+            <a onClick={() => handleCallClick({ source: "Website city page", obj: "N/A" })}
               href="tel:+919818544039"
               className="inline-flex items-center gap-3 bg-[#C8921C] hover:bg-[#b17f16] text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:scale-105"
             >
               {" "}
               <FaPhoneAlt /> Call Us Now{" "}
             </a>{" "}
-            <a
-               href="https://wa.me/919818544039"
+            <a onClick={() => handleWhatsappClick({ source: "Website city page", obj: "N/A" })}
+              href="https://wa.me/919818544039"
               className="inline-flex items-center gap-3 border-2 border-white text-white hover:bg-white hover:text-[#062347] px-8 py-4 rounded-xl font-semibold transition-all duration-300"
             >
               {" "}

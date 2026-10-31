@@ -11,6 +11,7 @@ import { useState } from "react";
 import ContactForm from "../Popup";
 import Category from "./Category";
 import Image from "next/image";
+import { handleWhatsappClick } from "@/lib/track";
 
 const product = [
   {
@@ -116,7 +117,7 @@ export default function Products() {
 
       const payload = {
         platform: "Corechem Corporation",
-         supplierToken: "6a1965202b56a9ede272a9ca",
+        supplierToken: "6a1965202b56a9ede272a9ca",
         platformEmail: "corechemcorporation@gmail.com",
         name: form.name,
         phone: form.phone,
@@ -226,6 +227,7 @@ export default function Products() {
                       href={"https://wa.link/2fpjmq"}
                       onClick={(e) => {
                         e.stopPropagation();
+                        handleWhatsappClick({ source: "Website inquiry page", obj: product.grade })
                       }}
                       target="_blank"
                       className="flex items-center justify-center gap-2 flex-1 bg-green-600 text-white py-4 rounded-lg text-lg   hover:bg-green-700"
@@ -254,6 +256,7 @@ export default function Products() {
 
             <Link
               href="https://wa.link/2fpjmq"
+              onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}
               target="_blank"
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[#c8921c] to-[#e6b53a] px-5 py-3 md:px-8 md:py-4 font-semibold text-white shadow-[0_10px_30px_rgba(200,146,28,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(200,146,28,0.5)]"
             >

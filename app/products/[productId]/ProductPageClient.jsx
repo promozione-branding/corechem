@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 
 import { redirect } from "next/navigation";
+import { handleCallClick, handleWhatsappClick } from "@/lib/track";
 
 export default function ProductPage({ params }) {
   const { productId } = React.use(params);
@@ -199,6 +200,7 @@ export default function ProductPage({ params }) {
             {/* BUTTONS */}
             <div className="mt-10 flex flex-wrap gap-4">
               <a
+                onClick={() => handleCallClick({ source: "Website product page", obj: product.name })}
                 href="tel:+919818544039"
                 // onClick={() => setIsFormOpen(true)}
                 className="group inline-flex items-center gap-2 rounded-xl bg-[#2B4D9D] px-7 py-4 font-semibold text-white shadow-xl transition hover:bg-scale-105 capitalize"
@@ -208,6 +210,7 @@ export default function ProductPage({ params }) {
               </a>
 
               <a
+                onClick={() => handleWhatsappClick({ source: "Website product page", obj: product.name })}
                 href={`https://wa.me/+919818544039?text=Hello I am interested in ${product.name}`}
                 target="_blank"
                 className="inline-flex items-center gap-2 rounded-xl border border-green-200 bg-green-50 px-7 py-4 font-semibold text-green-700 transition hover:bg-green-100"
@@ -242,11 +245,10 @@ export default function ProductPage({ params }) {
                     <button
                       key={i}
                       onClick={() => setActiveImage(img)}
-                      className={`overflow-hidden rounded-2xl border-2 transition ${
-                        activeImage === img
-                          ? "border-[#BE8220]"
-                          : "border-gray-200"
-                      }`}
+                      className={`overflow-hidden rounded-2xl border-2 transition ${activeImage === img
+                        ? "border-[#BE8220]"
+                        : "border-gray-200"
+                        }`}
                     >
                       <Image
                         src={img.src}
@@ -463,7 +465,7 @@ export default function ProductPage({ params }) {
                         Brochure
                       </a>
 
-                      <a
+                      <a onClick={() => handleCallClick({ source: "Website product page", obj: product.name })}
                         href="tel:+919818544039"
                         className="flex items-center justify-center gap-2 rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-semibold text-[#2B4D9D] transition hover:bg-blue-100"
                       >

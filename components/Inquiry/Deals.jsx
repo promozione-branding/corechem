@@ -9,6 +9,7 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import ContactForm from "../Popup";
 import { useState } from "react";
+import { handleWhatsappClick } from "@/lib/track";
 
 const products = [
   {
@@ -169,6 +170,7 @@ export default function Deals() {
                         <Link
                           onClick={(e) => {
                             e.stopPropagation();
+                            handleWhatsappClick({ source: "Website inquiry page", obj: item.grade })
                           }}
                           href={`https://wa.link/2fpjmq`}
                           className="mt-5 whitespace-nowrap flex items-center justify-around gap-2 text-green-500 text-[15px] font-[700]"

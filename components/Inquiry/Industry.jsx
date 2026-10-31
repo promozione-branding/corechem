@@ -17,6 +17,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { handleWhatsappClick } from "@/lib/track";
 
 const industries = [
   {
@@ -27,12 +28,12 @@ const industries = [
     title: "Plastic Industry",
     icon: FaRecycle,
   },
-  
+
   {
     title: "Textile Industry",
     icon: FaTshirt,
   },
-  
+
   {
     title: "Construction",
     icon: FaHardHat,
@@ -121,40 +122,40 @@ export default function Industry() {
         </Swiper>
 
         {/* WhatsApp CTA */}
-       <div className="mt-5 md:mt-12 flex justify-center">
-  <a
-    href="https://wa.link/2fpjmq"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group relative inline-flex items-center md:gap-3 overflow-hidden rounded-full bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 text-sm md:px-10 md:py-5 md:text-lg font-semibold text-white shadow-[0_10px_30px_rgba(34,197,94,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(34,197,94,0.5)]"
-  >
-    {/* Glow Effect */}
-    <span className="absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="mt-5 md:mt-12 flex justify-center">
+          <a onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}
+            href="https://wa.link/2fpjmq"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center md:gap-3 overflow-hidden rounded-full bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 text-sm md:px-10 md:py-5 md:text-lg font-semibold text-white shadow-[0_10px_30px_rgba(34,197,94,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(34,197,94,0.5)]"
+          >
+            {/* Glow Effect */}
+            <span className="absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-   
 
-    <FaWhatsapp className="relative text-3xl md:text-4xl" />
 
-    <span className="relative w-fit text-center">
-      Discuss Your Requirement on WhatsApp
-    </span>
+            <FaWhatsapp className="relative text-3xl md:text-4xl" />
 
-    {/* Arrow */}
-    <svg
-      className="relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M9 5l7 7-7 7"
-      />
-    </svg>
-  </a>
-</div>
+            <span className="relative w-fit text-center">
+              Discuss Your Requirement on WhatsApp
+            </span>
+
+            {/* Arrow */}
+            <svg
+              className="relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
 
       {/* Swiper Custom Style */}

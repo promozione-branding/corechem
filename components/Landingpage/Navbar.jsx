@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { handleCallClick, handleWhatsappClick, } from "@/lib/track";
 import {
   Mail,
   MapPin,
@@ -96,12 +96,12 @@ export default function Navbar() {
               Get Quote
             </button>
             <a
-            href="/PRODUCT CATALOGUE.pdf"
-            download
-            className="flex underline bg-[#2B4D9D]  md:hidden px-3 py-2 items-center rounded-xl text-sm gap-2"
-          >
+              href="/PRODUCT CATALOGUE.pdf"
+              download
+              className="flex underline bg-[#2B4D9D]  md:hidden px-3 py-2 items-center rounded-xl text-sm gap-2"
+            >
               <Download className="h-5 w-5 text-[#F5F6F9]" />
-           </a>
+            </a>
           </div>
 
           {/* DESKTOP MENU */}
@@ -168,7 +168,11 @@ export default function Navbar() {
             <div>
               <p className="text-xs text-gray-500">Call Anytime</p>
 
-              <a href="tel:+919818544039" className="font-bold text-[#062347]">
+              <a
+                href="tel:+919818544039"
+                onClick={() => handleCallClick({ source: "Website Navbar", })}
+                className="font-bold text-[#062347]"
+              >
                 +91 9818544039
               </a>
             </div>
@@ -243,8 +247,10 @@ export default function Navbar() {
             </div>
           </div>
 
+
           <a
             href="tel:+919818544039"
+            onClick={() => handleCallClick({ source: "Website Navbar", })}
             className="mt-6 rounded-lg bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] py-3 text-center font-semibold text-white"
           >
             Call Now
@@ -261,6 +267,6 @@ export default function Navbar() {
       </div>
 
       {isOpen && <ContactForm isOpen={isOpen} setIsOpen={setIsOpen} />}
-    </header>
+    </header >
   );
 }

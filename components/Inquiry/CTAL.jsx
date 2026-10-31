@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Reveal from "../Landingpage/Reveal";
 import Link from "next/link";
+import { handleWhatsappClick } from "@/lib/track";
 
 export default function CTAL() {
   return (
@@ -50,7 +51,7 @@ export default function CTAL() {
               </div>
 
               {/* BUTTON */}
-              <Link  href="https://wa.link/2fpjmq">
+              <Link href="https://wa.link/2fpjmq" onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

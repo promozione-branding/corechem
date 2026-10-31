@@ -1,5 +1,5 @@
 // app/about/page.tsx
-
+"use client"
 import Link from "next/link";
 import Otherpro from "@/components/Landingpage/Otherpro"
 import {
@@ -15,6 +15,7 @@ import {
   FlaskConical,
   Boxes,
 } from "lucide-react";
+import { handleCallClick, handleWhatsappClick } from "@/lib/track";
 
 
 const whyChoose = [
@@ -53,68 +54,68 @@ const whyChoose = [
 export default function AboutPage() {
   return (
     <>
-    <section
-  style={{ backgroundImage: "url(/parallex.jpg)" }}
-  className="relative overflow-hidden bg-cover bg-center"
->
-  <div className="absolute inset-0 bg-white/30" />
+      <section
+        style={{ backgroundImage: "url(/parallex.jpg)" }}
+        className="relative overflow-hidden bg-cover bg-center"
+      >
+        <div className="absolute inset-0 bg-white/30" />
 
-  <div className="absolute inset-0 bg-gradient-to-br from-orange-100/70 via-white/40 to-blue-100/60" />
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-100/70 via-white/40 to-blue-100/60" />
 
-  <div className="absolute top-0 left-0 h-[400px] w-[400px] rounded-full bg-orange-200/30 blur-3xl" />
+        <div className="absolute top-0 left-0 h-[400px] w-[400px] rounded-full bg-orange-200/30 blur-3xl" />
 
-  <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-blue-200/30 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-blue-200/30 blur-3xl" />
 
-  <div className="relative mx-auto flex min-h-[500px] max-w-7xl items-center justify-center px-6 py-10">
-    
-    <div className="max-w-6xl text-center">
-      <span className="inline-flex items-center rounded-full border border-blue-200 bg-white/90 px-5 py-2 text-sm font-semibold text-[#2B4D9D] shadow-md backdrop-blur-md">
-        Trusted Titanium Dioxide Supplier
-      </span>
+        <div className="relative mx-auto flex min-h-[500px] max-w-7xl items-center justify-center px-6 py-10">
 
-      <h2 className="mt-3 text-3xl md:text-5xl font-extrabold leading-tight text-[#1e293b]">
-        About{" "}
-        <span className="bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] bg-clip-text text-transparent">
-          Corechem
-        </span>{" "}
-        Corporation
-      </h2>
+          <div className="max-w-6xl text-center">
+            <span className="inline-flex items-center rounded-full border border-blue-200 bg-white/90 px-5 py-2 text-sm font-semibold text-[#2B4D9D] shadow-md backdrop-blur-md">
+              Trusted Titanium Dioxide Supplier
+            </span>
 
-      <h2 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">
-        Reputable Supplier of Titanium Dioxide for Various Industries
-      </h2>
+            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold leading-tight text-[#1e293b]">
+              About{" "}
+              <span className="bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] bg-clip-text text-transparent">
+                Corechem
+              </span>{" "}
+              Corporation
+            </h2>
 
-      <p className="mx-auto mt-8 max-w-5xl text-lg leading-8 text-black md:text-xl">
-        Corechem Corporation is a reputable Titanium Dioxide Supplier whose
-        main objective is to offer customers the best chemical solutions
-        available on the market. Focusing on product quality and reliability,
-        our company is able to meet any needs of companies that require
-        Titanium Dioxide as part of their operations. Our products find
-        application in a variety of sectors, including coatings and paints,
-        plastics, inks, paper manufacturing, rubber and cosmetics. By working
-        directly with our manufacturers and suppliers, we can ensure that we
-        deliver products of high quality.
-      </p>
+            <h2 className="mt-4 text-3xl font-bold leading-tight md:text-5xl">
+              Reputable Supplier of Titanium Dioxide for Various Industries
+            </h2>
 
-      <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-        <Link
-          href={"https://wa.me/919818544039"}
-          className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] px-7 py-4 font-semibold text-white shadow-xl transition hover:bg-[#9e880b]"
-        >
-          Request a Quote
-          <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
-        </Link>
+            <p className="mx-auto mt-8 max-w-5xl text-lg leading-8 text-black md:text-xl">
+              Corechem Corporation is a reputable Titanium Dioxide Supplier whose
+              main objective is to offer customers the best chemical solutions
+              available on the market. Focusing on product quality and reliability,
+              our company is able to meet any needs of companies that require
+              Titanium Dioxide as part of their operations. Our products find
+              application in a variety of sectors, including coatings and paints,
+              plastics, inks, paper manufacturing, rubber and cosmetics. By working
+              directly with our manufacturers and suppliers, we can ensure that we
+              deliver products of high quality.
+            </p>
 
-        <Link
-          href="/contact"
-          className="rounded-xl border border-slate-200 bg-white/90 px-7 py-4 font-semibold text-slate-700 shadow-md backdrop-blur-sm transition hover:border-[#4B3089] hover:text-[#4B3089]"
-        >
-          Contact Our Team
-        </Link>
-      </div>
-    </div>
-  </div>
-</section>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <Link onClick={() => handleWhatsappClick({ source: "Website About page", obj: "N/A" })}
+                href={"https://wa.me/919818544039"}
+                className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] px-7 py-4 font-semibold text-white shadow-xl transition hover:bg-[#9e880b]"
+              >
+                Request a Quote
+                <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
+              </Link>
+
+              <Link
+                href="/contact"
+                className="rounded-xl border border-slate-200 bg-white/90 px-7 py-4 font-semibold text-slate-700 shadow-md backdrop-blur-sm transition hover:border-[#4B3089] hover:text-[#4B3089]"
+              >
+                Contact Our Team
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <main className="overflow-hidden bg-[#f8fafc] text-[#1e293b]">
         <section className="mx-auto px-3 py-8  md:px-25 md:py-15">
@@ -124,11 +125,11 @@ export default function AboutPage() {
                 Who We Are
               </span>
 
-           
+
               <p className="mt-6 text-lg leading-8 text-black">
-              At Corechem Corporation, we know that quality products and services are the basis for successful partnerships in the corporate world. We understand how important product availability is for a continuous manufacturing process. This is why, as an experienced Titanium Dioxide Supplier, our main objective is to assist our clients in maintaining smooth manufacturing procedures.
-We provide our clients with custom-made supply services according to their needs and requirements.
-We work hard to establish successful relationships within various industries by providing a customer-oriented approach and supply capacity.
+                At Corechem Corporation, we know that quality products and services are the basis for successful partnerships in the corporate world. We understand how important product availability is for a continuous manufacturing process. This is why, as an experienced Titanium Dioxide Supplier, our main objective is to assist our clients in maintaining smooth manufacturing procedures.
+                We provide our clients with custom-made supply services according to their needs and requirements.
+                We work hard to establish successful relationships within various industries by providing a customer-oriented approach and supply capacity.
 
               </p>
 
@@ -168,8 +169,8 @@ We work hard to establish successful relationships within various industries by 
         </section>
 
 
-          <Otherpro></Otherpro>
-         
+        <Otherpro></Otherpro>
+
 
         <section className="mx-auto px-4 py-7  md:px-20 md:py-18">
           <div className="grid gap-10 lg:grid-cols-2">
@@ -177,8 +178,8 @@ We work hard to establish successful relationships within various industries by 
               <h2 className="text-4xl font-bold">Our Mission</h2>
 
               <p className="mt-6 text-md md:text-lg leading-8 text-slate-600">
-               The mission of Corechem Corporation is to deliver high-quality Titanium Dioxide materials and reliable chemical supplies, addressing the changing demands of the industry. As Titanium Dioxide Supplier, our objective is to provide quality products, reliable services, competitive pricing, and customer-oriented assistance for manufacturers in different industries.
-Our objective is to create long-lasting partnerships through integrity, professionalism, and prompt customer service, assisting manufacturers to ensure smooth operation process through our quality products and professional services.
+                The mission of Corechem Corporation is to deliver high-quality Titanium Dioxide materials and reliable chemical supplies, addressing the changing demands of the industry. As Titanium Dioxide Supplier, our objective is to provide quality products, reliable services, competitive pricing, and customer-oriented assistance for manufacturers in different industries.
+                Our objective is to create long-lasting partnerships through integrity, professionalism, and prompt customer service, assisting manufacturers to ensure smooth operation process through our quality products and professional services.
 
               </p>
 
@@ -192,8 +193,8 @@ Our objective is to create long-lasting partnerships through integrity, professi
               <h2 className="text-4xl font-bold">Our Vision</h2>
 
               <p className="mt-6 text-md md:text-lg  leading-8 text-slate-600">
-               The vision of Corechem Corporation is to become a well-known Titanium Dioxide Supplier, providing quality, reliable services and having excellent customer relations, which will ensure our success in the market.
-We are a supplier committed to sustainable development and excellence. The company strives to maintain the same level of quality in its services, ensuring the successful functioning of the business.
+                The vision of Corechem Corporation is to become a well-known Titanium Dioxide Supplier, providing quality, reliable services and having excellent customer relations, which will ensure our success in the market.
+                We are a supplier committed to sustainable development and excellence. The company strives to maintain the same level of quality in its services, ensuring the successful functioning of the business.
 
               </p>
 
@@ -217,7 +218,7 @@ We are a supplier committed to sustainable development and excellence. The compa
               </h2>
 
               <p className="mt-3 text-lg leading-8 text-slate-600">
-             Corechem Corporation is committed to delivering high-quality Titanium Dioxide products backed by reliable service, consistent supply, and industry expertise. As a trusted Titanium Dioxide Supplier, we focus on helping businesses maintain efficient manufacturing operations with dependable chemical solutions.
+                Corechem Corporation is committed to delivering high-quality Titanium Dioxide products backed by reliable service, consistent supply, and industry expertise. As a trusted Titanium Dioxide Supplier, we focus on helping businesses maintain efficient manufacturing operations with dependable chemical solutions.
               </p>
             </div>
 
@@ -275,7 +276,7 @@ We are a supplier committed to sustainable development and excellence. The compa
                   Get Product Information
                 </Link>
 
-                <a
+                <a onClick={() => handleCallClick({ source: "Website about page", obj: "N/A" })}
                   href="tel:+919818544039"
                   className="inline-flex items-center gap-2 rounded-xl border border-purple-200 bg-purple-50 px-6 py-4 font-semibold text-[#4B3089] transition hover:bg-pruple-100"
                 >

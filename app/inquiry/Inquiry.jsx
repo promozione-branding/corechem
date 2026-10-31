@@ -1,3 +1,4 @@
+"use client"
 import Footer from "@/components/Inquiry/Footer";
 import Header from "@/components/Inquiry/Header";
 import Hero from "@/components/Inquiry/Hero";
@@ -19,7 +20,7 @@ export default function Inquiry() {
       <Hero></Hero>
       <FeatureStripInquiry></FeatureStripInquiry>
       <Products></Products>
-      <TabForm/>
+      <TabForm />
       <WhyChoose></WhyChoose>
       {/* <AboutUsSection></AboutUsSection> */}
       <Whychoose2></Whychoose2>

@@ -19,6 +19,7 @@ import {
 import { FaPhoneAlt, FaWhatsapp, FaClipboardList } from "react-icons/fa";
 import ContactForm from "../Popup";
 import { handleCallClick } from "@/lib/track";
+import PriceMarquee from "./PriceMarquee";
 
 export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -32,73 +33,82 @@ export default function Header() {
     return () => clearTimeout(timer);
   }, []);
 
-
   return (
     <header className="sticky top-0 z-[9999] w-full bg-white shadow-sm">
-
       {/* ================= TOP BAR ================= */}
-      <div className="hidden relative z-50 lg:flex h-[42px] items-center justify-between bg-[#062347] px-8 xl:px-14">
+      {/* ================= TOP BAR ================= */}
+      <div className="relative z-50 w-full bg-[#c8921c]">
+        <div className="flex h-[44px] items-center overflow-hidden">
+          {/* LEFT - CONTACT DETAILS (DESKTOP ONLY) */}
+          <div className="hidden xl:flex shrink-0 items-center gap-4 px-4 text-[11px] text-white 2xl:gap-5 2xl:px-6 2xl:text-[12px]">
 
-        <div className="flex items-center gap-5 text-white text-[13px]">
-
-          <div className="flex items-center gap-2">
-            <Mail className="h-3 w-3 text-[#c8921c]" />
-            <a href="mailto:corechemcorporation@gmail.com">
+            <a
+              href="mailto:corechemcorporation@gmail.com"
+              className="flex items-center gap-2 hover:text-[#c8921c]"
+            >
+              <Mail className="h-3.5 w-3.5 text-[#c8921c]" />
               corechemcorporation@gmail.com
             </a>
+
+            <div className="h-3 w-px bg-white/30" />
+
+            <div className="flex items-center gap-2">
+              <MapPin className="h-3.5 w-3.5 text-[#c8921c]" />
+              Delhi, India
+            </div>
+
+            <div className="h-3 w-px bg-white/30" />
+
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-3.5 w-3.5 text-[#c8921c]" />
+              GST NO. 07EOXPG8261J1Z5
+            </div>
           </div>
 
-          <div className="h-3 w-px bg-white/30" />
-
-          <div className="flex items-center gap-2">
-            <MapPin className="h-3 w-3 text-[#c8921c]" />
-            Delhi, India
+          {/* CENTER - YELLOW MARQUEE */}
+          <div className="min-w-0 flex-1 overflow-hidden bg-[#c8921c]">
+            <PriceMarquee onQuoteClick={() => setIsOpen(true)} />
           </div>
 
-          <div className="h-3 w-px bg-white/30" />
-
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="h-3 w-3 text-[#c8921c]" />
-            GST NO. 07EOXPG8261J1Z5
+          {/* RIGHT - QUOTE BUTTON (DESKTOP ONLY) */}
+          <div className="hidden shrink-0 items-center px-4 xl:flex 2xl:px-8">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="whitespace-nowrap rounded-md bg-[#062347] px-5 py-2 text-[12px] font-bold text-white transition-all duration-300 hover:bg-[#04172e]"
+            >
+              Get Free Quote →
+            </button>
           </div>
-        </div>
-
-        <div className="flex items-center gap-5 text-white">
-
-
-
-          <button
-            onClick={() => setIsOpen(true)}
-            className="bg-[#c8921c] hidden md:block px-7 py-[11px] text-[14px] font-semibold text-white hover:bg-[#b88312]"
-          >
-            Get Free Quote →
-          </button>
-
         </div>
       </div>
 
       {/* ================= MAIN NAVBAR ================= */}
-      <div className="h-[85px] bg-white">
-
+      <div className="h-[80px] bg-white overflow-hidden shadow-sm">
         <div className="mx-auto flex h-full max-w-[1700px] items-center justify-between px-4 sm:px-6 lg:px-10">
-
           {/* LOGO */}
-          <Link href="/" className="shrink-0">
+          <Link href="/" className="shrink-0 relative">
             <Image
               src="/logo4.png"
               alt="Logo"
               width={260}
               height={100}
               priority
-              className="h-auto w-[200px] sm:w-[220px] lg:w-[340px]"
+              className="h-auto w-[160px] sm:w-[220px] lg:w-[340px] sm:scale-100 scale-150"
             />
+            <p className="md:hidden block absolute top-26.5 left-6 text-[8px] text-black">
+              GST NO. 07EOXPG8261J1Z5
+            </p>
           </Link>
-          <div><a href="tel:+919818544039" className="bg-[#c8921c] md:hidden px-2 py-3 text-xs text-white rounded-xl">Get Free Quote</a></div>
+
+          <div>
+            <a href="tel:+919818544039" className="bg-[#c8921c] md:hidden px-2 py-3 text-xs text-white rounded-xl">
+              Get Free Quote
+            </a>
+          </div>
 
 
           {/* DESKTOP MENU */}
           <nav className="hidden xl:flex items-center gap-10">
-
             <Link
               href="/inquiry"
               className="font-semibold text-[17px] hover:text-[#c8921c]"
@@ -127,25 +137,16 @@ export default function Header() {
 
             </div>
 
-            {/* <Link
-              href="/our-blogs"
-              className="font-semibold text-[17px] hover:text-[#c8921c]"
-            >
-              Articles & Resources
-            </Link> */}
-
             <Link
               href="/inquiry"
               className="font-semibold text-[17px] hover:text-[#c8921c]"
             >
               Contact Us
             </Link>
-
           </nav>
 
           {/* PHONE */}
           <div className="hidden lg:flex items-center gap-3">
-
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#c8921c]">
               <Phone className="h-5 w-5 text-white" />
             </div>
@@ -179,7 +180,6 @@ export default function Header() {
       </div>
 
       {/* ================= MOBILE MENU ================= */}
-
       <div
         className={`xl:hidden fixed top-0 right-0 h-screen w-[320px] bg-white shadow-2xl transition-all duration-300 z-[999999]
         ${mobileMenu
@@ -245,7 +245,7 @@ export default function Header() {
             Call Now
           </a>
           <a onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}
-              href="https://wa.me/919818544039"
+            href="https://wa.me/919818544039"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-green-600 px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-green-700 hover:shadow-xl"
@@ -257,14 +257,78 @@ export default function Header() {
         </div>
       </div>
 
-
       {isOpen && <ContactForm isOpen={isOpen} setIsOpen={setIsOpen} />}
-      <div className="fixed bottom-0 left-0 right-0 z-[9999] block md:hidden">
-        <div className="mx-2 mb-2 overflow-hidden rounded-2xl border border-white/10 bg-[#062347]/95 shadow-[0_-5px_30px_rgba(0,0,0,0.25)] backdrop-blur-md">
+
+      {/* ================= MOBILE BOTTOM BAR ================= */}
+      <div className="fixed bottom-0 left-0 right-0 z-[9999] block w-full md:hidden">
+
+        <style jsx>{`
+    @keyframes bottomMarquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .bottom-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: bottomMarquee 32s linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bottom-marquee-track {
+        animation: none;
+      }
+    }
+  `}</style>
+
+        {/* ================= YELLOW MARQUEE ================= */}
+        <div className="relative w-full overflow-hidden bg-[#c8921c] py-1">
+
+          <div className="bottom-marquee-track">
+            {[0, 1].map((copy) => (
+              <div
+                key={copy}
+                aria-hidden={copy === 1}
+                className="flex shrink-0 items-center"
+              >
+                {[
+                  "COA & TDS with every lot. GST invoices, 24hrs Fast dispatch across india. Get today’s rate in 2 minutes",
+                  "COA & TDS with every lot. GST invoices, 24hrs Fast dispatch across india. Get today’s rate in 2 minutes",
+                ].map((text, index) => (
+                  <div
+                    key={`${copy}-${index}`}
+                    className="flex shrink-0 items-center tracking-wider gap-4 px-5"
+                  >
+                    <span className="whitespace-nowrap text-[20px] font-bold text-[#fff]">
+                      {text}
+                    </span>
+
+                    <span className="text-sm text-[#fff]">
+                      ✦
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ================= ACTION BUTTONS ================= */}
+        <div className="w-full border-t border-white/10 bg-[#062347] shadow-[0_-5px_30px_rgba(0,0,0,0.25)]">
           <div className="grid grid-cols-3">
 
             {/* CALL */}
-            <Link onClick={() => handleCallClick({ source: "Website inquiry page", obj: "N/A" })}
+            <Link
+              onClick={() =>
+                handleCallClick({
+                  source: "Website inquiry page",
+                  obj: "N/A",
+                })
+              }
               href="tel:+919818544039"
               className="flex flex-col items-center justify-center gap-1 border-r border-white/10 py-3 text-white transition hover:bg-white/10"
             >
@@ -274,7 +338,8 @@ export default function Header() {
 
             {/* ENQUIRY */}
             <button
-              onClick={() => setIsOpen(true)} // Your enquiry modal state
+              type="button"
+              onClick={() => setIsOpen(true)}
               className="flex flex-col items-center justify-center gap-1 border-r border-white/10 py-3 text-white transition hover:bg-white/10"
             >
               <FaClipboardList className="text-lg text-[#c8921c]" />
@@ -282,14 +347,22 @@ export default function Header() {
             </button>
 
             {/* WHATSAPP */}
-            <Link onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}
-               href="https://wa.me/919818544039"
+            <Link
+              onClick={() =>
+                handleWhatsappClick({
+                  source: "Website inquiry page",
+                  obj: "N/A",
+                })
+              }
+              href="https://wa.me/919818544039"
               target="_blank"
+              rel="noopener noreferrer"
               className="flex flex-col items-center justify-center gap-1 bg-[#25D366] py-3 text-white"
             >
               <FaWhatsapp className="text-xl" />
               <span className="text-xs font-bold">WhatsApp</span>
             </Link>
+
           </div>
         </div>
       </div>

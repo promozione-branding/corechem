@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 // import { auth } from "@/lib/firebase";
 
 
-export default function ContactForm({setIsOpen,isOpen}) {
+export default function ContactForm({ setIsOpen, isOpen }) {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
 
@@ -22,220 +22,220 @@ export default function ContactForm({setIsOpen,isOpen}) {
   const [message, setMessage] = useState("");
 
 
-// const [otp, setOtp] = useState("");
-// const [showOtpBox, setShowOtpBox] = useState(false);
-// const [confirmationResult, setConfirmationResult] = useState(null);
-// const [isPhoneVerified, setIsPhoneVerified] = useState(false);
+  // const [otp, setOtp] = useState("");
+  // const [showOtpBox, setShowOtpBox] = useState(false);
+  // const [confirmationResult, setConfirmationResult] = useState(null);
+  // const [isPhoneVerified, setIsPhoneVerified] = useState(false);
 
-// const recaptchaId = "contact-popup-recaptcha";
+  // const recaptchaId = "contact-popup-recaptcha";
 
 
 
   const services = [
-  {
-    title: "Titanium Dioxide",
-    
-  },
+    {
+      title: "Titanium Dioxide",
 
-  {
-    title: "Titanium Dioxide Rutile",
-   
-  },
+    },
 
-  {
-    title: "Color Pigment",
- 
-  },
+    {
+      title: "Titanium Dioxide Rutile",
 
-  {
-    title: "Pigment Powder",
-   
-  },
+    },
 
-  {
-    title: "Lithopone",
-   
-  },
+    {
+      title: "Color Pigment",
 
-  {
-    title: "Caustic Soda",
-   
-  },
+    },
 
-  {
-    title: "Calcium Carbonate",
-   
-  },
+    {
+      title: "Pigment Powder",
 
-  {
-    title: "Optical Brighter",
-   
-  },
+    },
 
-  {
-    title: "Carbon",
-   
-  },
-];
+    {
+      title: "Lithopone",
 
-  
-// useEffect(() => {
-//   const timer = setTimeout(() => setIsOpen(true), 5000);
+    },
 
-//   if (typeof window !== "undefined") {
-//     const initRecaptcha = async () => {
-//       try {
-//         if (window.contactPopupRecaptcha) {
-//           window.contactPopupRecaptcha.clear();
-//         }
+    {
+      title: "Caustic Soda",
 
-//         window.contactPopupRecaptcha = new RecaptchaVerifier(
-//           auth,
-//           recaptchaId,
-//           {
-//             size: "invisible",
-//           }
-//         );
+    },
 
-//         await window.contactPopupRecaptcha.render();
-//       } catch (err) {
-//         console.log(err);
-//       }
-//     };
+    {
+      title: "Calcium Carbonate",
 
-//     initRecaptcha();
-//   }
+    },
 
-//   return () => {
-//     clearTimeout(timer);
+    {
+      title: "Optical Brighter",
 
-//     if (window.contactPopupRecaptcha) {
-//       window.contactPopupRecaptcha.clear();
-//       window.contactPopupRecaptcha = null;
-//     }
-//   };
-// }, []);
+    },
+
+    {
+      title: "Carbon",
+
+    },
+  ];
+
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => setIsOpen(true), 5000);
+
+  //   if (typeof window !== "undefined") {
+  //     const initRecaptcha = async () => {
+  //       try {
+  //         if (window.contactPopupRecaptcha) {
+  //           window.contactPopupRecaptcha.clear();
+  //         }
+
+  //         window.contactPopupRecaptcha = new RecaptchaVerifier(
+  //           auth,
+  //           recaptchaId,
+  //           {
+  //             size: "invisible",
+  //           }
+  //         );
+
+  //         await window.contactPopupRecaptcha.render();
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     };
+
+  //     initRecaptcha();
+  //   }
+
+  //   return () => {
+  //     clearTimeout(timer);
+
+  //     if (window.contactPopupRecaptcha) {
+  //       window.contactPopupRecaptcha.clear();
+  //       window.contactPopupRecaptcha = null;
+  //     }
+  //   };
+  // }, []);
 
 
   // FORM SUBMIT (NO OTP)
- const submitForm = async () => {
-  try {
-    setLoading(true);
+  const submitForm = async () => {
+    try {
+      setLoading(true);
 
-    const formData = {
-      platform: "Corechem corporation popup form",
-      platformEmail: "corechemcorporation@gmail.com",
-       supplierToken: "6a1965202b56a9ede272a9ca",
-      name,
-      phone,
-      email,
-      product,
-      message,
-      place: "N/A",
-    };
+      const formData = {
+        platform: "Corechem corporation popup form",
+        platformEmail: "corechemcorporation@gmail.com",
+        supplierToken: "6a1965202b56a9ede272a9ca",
+        name,
+        phone,
+        email,
+        product,
+        message,
+        place: "N/A",
+      };
 
-    const { data } = await axios.post(
-      "https://brandbnalo.com/api/form/add",
-      formData
-    );
+      const { data } = await axios.post(
+        "https://brandbnalo.com/api/form/add",
+        formData
+      );
 
-    if (data?.success) {
-      toast.success("Form Submitted Successfully");
+      if (data?.success) {
+        toast.success("Form Submitted Successfully");
 
-      setStatus("✅ Your enquiry has been submitted successfully!");
+        setStatus("✅ Your enquiry has been submitted successfully!");
 
-      setName("");
-      setPhone("");
-      setEmail("");
-      setProduct("");
-      setMessage("");
+        setName("");
+        setPhone("");
+        setEmail("");
+        setProduct("");
+        setMessage("");
 
-      // setOtp("");
+        // setOtp("");
 
-      // setShowOtpBox(false);
-      // setConfirmationResult(null);
-      // setIsPhoneVerified(false);
+        // setShowOtpBox(false);
+        // setConfirmationResult(null);
+        // setIsPhoneVerified(false);
 
-      setTimeout(() => {
-        setIsOpen(false);
-      }, 2000);
+        setTimeout(() => {
+          setIsOpen(false);
+        }, 2000);
 
-    } else {
-      toast.error("Submission Failed");
+      } else {
+        toast.error("Submission Failed");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Server Error");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.log(error);
-    toast.error("Server Error");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
 
 
-// const sendOTP = async () => {
-//   try {
-//     setLoading(true);
+  // const sendOTP = async () => {
+  //   try {
+  //     setLoading(true);
 
-//     const appVerifier = window.contactPopupRecaptcha;
+  //     const appVerifier = window.contactPopupRecaptcha;
 
-//     const result = await signInWithPhoneNumber(
-//       auth,
-//       `+91${phone}`,
-//       appVerifier
-//     );
+  //     const result = await signInWithPhoneNumber(
+  //       auth,
+  //       `+91${phone}`,
+  //       appVerifier
+  //     );
 
-//     setConfirmationResult(result);
-//     setShowOtpBox(true);
+  //     setConfirmationResult(result);
+  //     setShowOtpBox(true);
 
-//     toast.success("OTP Sent Successfully");
-//   } catch (err) {
-//     console.log(err);
-//     toast.error(err.message);
-//   } finally {
-//     setLoading(false);
-//   }
-// };
+  //     toast.success("OTP Sent Successfully");
+  //   } catch (err) {
+  //     console.log(err);
+  //     toast.error(err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
 
-// const verifyOTP = async () => {
-//   try {
-//     setLoading(true);
+  // const verifyOTP = async () => {
+  //   try {
+  //     setLoading(true);
 
-//     await confirmationResult.confirm(otp);
+  //     await confirmationResult.confirm(otp);
 
-//     toast.success("Phone Verified");
+  //     toast.success("Phone Verified");
 
-//     setIsPhoneVerified(true);
+  //     setIsPhoneVerified(true);
 
-//     await submitForm();
-//   } catch (err) {
-//     console.log(err);
-//     toast.error("Invalid OTP");
-//   } finally {
-//     setLoading(false);
-//   }
-// };
+  //     await submitForm();
+  //   } catch (err) {
+  //     console.log(err);
+  //     toast.error("Invalid OTP");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
 
 
   // HANDLE SUBMIT
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!phone || phone.length !== 10) {
-    return toast.error("Enter Valid Phone Number");
-  }
+    if (!phone || phone.length !== 10) {
+      return toast.error("Enter Valid Phone Number");
+    }
 
-  await submitForm()
+    await submitForm()
 
-  // if (isPhoneVerified) {
-  //   await submitForm();
-  //   return;
-  // }
+    // if (isPhoneVerified) {
+    //   await submitForm();
+    //   return;
+    // }
 
-  // await sendOTP();
-};
+    // await sendOTP();
+  };
 
   if (!isOpen) return null;
 
@@ -247,11 +247,11 @@ export default function ContactForm({setIsOpen,isOpen}) {
       >
         {/* CLOSE */}
         <button
-  className="absolute cursor-pointer top-4 right-4 text-white hover:text-red-500 text-xl"
-  onClick={() => setIsOpen(false)}
->
-  ✕
-</button>
+          className="absolute cursor-pointer top-4 right-4 text-white hover:text-red-500 text-xl"
+          onClick={() => setIsOpen(false)}
+        >
+          ✕
+        </button>
 
         {/* TITLE */}
         <h2 className="text-center text-xl md:text-3xl font-semibold">
@@ -272,19 +272,19 @@ export default function ContactForm({setIsOpen,isOpen}) {
             />
 
             <select
-  className="w-1/2 max-md:w-full p-3 rounded-md text-black bg-blue-50"
-  value={product}
-  onChange={(e) => setProduct(e.target.value)}
-  required
->
-  <option value="">Select Product</option>
+              className="w-1/2 max-md:w-full p-3 rounded-md text-black bg-blue-50"
+              value={product}
+              onChange={(e) => setProduct(e.target.value)}
+              required
+            >
+              <option value="">Select Product</option>
 
-  {services.map((item, index) => (
-    <option key={index} value={item.title}>
-      {item.title}
-    </option>
-  ))}
-</select>
+              {services.map((item, index) => (
+                <option key={index} value={item.title}>
+                  {item.title}
+                </option>
+              ))}
+            </select>
           </div>
 
           <input
@@ -316,7 +316,7 @@ export default function ContactForm({setIsOpen,isOpen}) {
             required
           />
 
-       {/* {showOtpBox && !isPhoneVerified && (
+          {/* {showOtpBox && !isPhoneVerified && (
   <>
     <input
       type="text"
@@ -338,15 +338,15 @@ export default function ContactForm({setIsOpen,isOpen}) {
   </>
 )} */}
 
-{/* {!showOtpBox && ( */}
-  <button
-    type="submit"
-    disabled={loading}
-    className="w-full py-3 bg-gradient-to-r from-[#0077e6] to-[#005bb5] text-white rounded-md font-semibold"
-  >
-    {loading ? "Sumbiting Enquiry..." : "Submit Enquiry"}
-  </button>
-{/* )} */}
+          {/* {!showOtpBox && ( */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 bg-gradient-to-r from-[#0077e6] to-[#005bb5] text-white rounded-md font-semibold"
+          >
+            {loading ? "Sumbiting Enquiry..." : "Submit Enquiry"}
+          </button>
+          {/* )} */}
 
           {status && (
             <p className="text-center text-sm mt-2">{status}</p>

@@ -7,7 +7,11 @@ import "swiper/css";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import ContactForm from "../Popup";
+import dynamic from "next/dynamic";
+const ContactForm = dynamic(() => import("../Popup"), {
+  ssr: false,
+  loading: () => null,
+});
 import { useState } from "react";
 import { handleWhatsappClick } from "@/lib/track";
 
@@ -145,6 +149,9 @@ export default function Deals() {
                           alt="powder"
                           width={600}
                           height={400}
+                          // ~215px wide on phones (was fetching the 1200px file);
+                          // tablet/desktop keep the previous 600px behaviour.
+                          sizes="(max-width: 767px) 215px, 600px"
                           className="object-cover"
                         />
                       </div>

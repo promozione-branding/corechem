@@ -260,22 +260,33 @@ export default function Header() {
       {isOpen && <ContactForm isOpen={isOpen} setIsOpen={setIsOpen} />}
 
       {/* ================= MOBILE BOTTOM BAR ================= */}
+
+      {/* ================= MOBILE BOTTOM BAR ================= */}
       <div className="fixed bottom-0 left-0 right-0 z-[9999] block w-full md:hidden">
 
         <style jsx>{`
     @keyframes bottomMarquee {
-      from {
-        transform: translateX(0);
+      0% {
+        transform: translate3d(0, 0, 0);
       }
-      to {
-        transform: translateX(-50%);
+      100% {
+        transform: translate3d(-50%, 0, 0);
       }
     }
 
     .bottom-marquee-track {
       display: flex;
+      flex-wrap: nowrap;
       width: max-content;
       animation: bottomMarquee 32s linear infinite;
+      will-change: transform;
+    }
+
+    .bottom-marquee-item {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      white-space: nowrap;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -286,34 +297,28 @@ export default function Header() {
   `}</style>
 
         {/* ================= YELLOW MARQUEE ================= */}
-        <div className="relative w-full overflow-hidden bg-[#c8921c] py-1">
+        <div className="relative w-full h-[40px] overflow-hidden bg-[#c8921c] py-1">
 
           <div className="bottom-marquee-track">
+
             {[0, 1].map((copy) => (
               <div
                 key={copy}
                 aria-hidden={copy === 1}
-                className="flex shrink-0 items-center"
+                className="bottom-marquee-item"
               >
-                {[
-                  "COA & TDS with every lot. GST invoices, 24hrs Fast dispatch across india. Get today’s rate in 2 minutes",
-                  "COA & TDS with every lot. GST invoices, 24hrs Fast dispatch across india. Get today’s rate in 2 minutes",
-                ].map((text, index) => (
-                  <div
-                    key={`${copy}-${index}`}
-                    className="flex shrink-0 items-center tracking-wider gap-4 px-5"
-                  >
-                    <span className="whitespace-nowrap text-[20px] font-bold text-[#fff]">
-                      {text}
-                    </span>
+                <span className="inline-block shrink-0 whitespace-nowrap px-5 text-[20px] font-bold leading-[1.5] tracking-wider text-white">
+                  COA & TDS with every lot. GST invoices,
+                  24hrs Fast dispatch across India.
+                  Get today's rate in 2 minutes
+                </span>
 
-                    <span className="text-sm text-[#fff]">
-                      ✦
-                    </span>
-                  </div>
-                ))}
+                <span className="shrink-0 px-4 text-lg text-white">
+                  ✦
+                </span>
               </div>
             ))}
+
           </div>
         </div>
 
@@ -366,6 +371,7 @@ export default function Header() {
           </div>
         </div>
       </div>
+
     </header>
   );
 }

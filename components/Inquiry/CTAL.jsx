@@ -1,28 +1,14 @@
 "use client";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import Reveal from "./RevealLite";
+import Reveal from "../Landingpage/Reveal";
 import Link from "next/link";
 import { handleWhatsappClick } from "@/lib/track";
-
-// The shine sweep used to be a framer-motion infinite animation, which keeps
-// the main thread busy for as long as the page is open. A CSS keyframe runs on
-// the compositor instead (same motion: -100% -> 200%, 2s, linear, infinite).
-const shineCss = `
-@keyframes ctal-shine {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(200%); }
-}
-.ctal-shine { animation: ctal-shine 2s linear infinite; }
-@media (prefers-reduced-motion: reduce) {
-  .ctal-shine { animation: none; }
-}
-`;
 
 export default function CTAL() {
   return (
     <section className="relative w-full  mx-auto overflow-hidden rounded-md">
-      <style>{shineCss}</style>
       <Reveal>
         <div className="grid grid-cols-1 md:grid-cols-[420px_1fr] items-stretch">
           {/* LEFT IMAGE */}
@@ -31,7 +17,7 @@ export default function CTAL() {
               src="/cta.webp"
               alt="Garbage Bags Manufacturing"
               fill
-              sizes="(max-width: 768px) 100vw, 420px"
+              priority
               className="object-cover"
             />
           </div>
@@ -66,18 +52,25 @@ export default function CTAL() {
 
               {/* BUTTON */}
               <Link  href="https://wa.me/919818544039" onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}>
-                <button
-                  className="relative flex items-center justify-center md:justify-start gap-2 lg:gap-1 xl:gap-2 bg-white text-black px-6 py-3 sm:py-4 rounded-xl font-medium overflow-hidden w-full md:w-auto transition-transform duration-200 hover:scale-105 active:scale-95"
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative flex items-center justify-center md:justify-start gap-2 lg:gap-1 xl:gap-2 bg-white text-black px-6 py-3 sm:py-4 rounded-xl font-medium overflow-hidden w-full md:w-auto"
                 >
                   <span className="relative z-10 whitespace-nowrap">Explore Our Range</span>
                   <ArrowRight size={18} />
 
                   {/* Shine Effect */}
-                  <div
-                    aria-hidden="true"
-                    className="ctal-shine absolute top-0 left-0 w-1/2 h-full bg-yellow-600/40"
+                  <motion.div
+                    animate={{ x: ["-100%", "200%"] }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 2,
+                      ease: "linear",
+                    }}
+                    className="absolute top-0 left-0 w-1/2 h-full bg-yellow-600/40 skew-x-12"
                   />
-                </button>
+                </motion.button>
               </Link>
             </div>
           </div>

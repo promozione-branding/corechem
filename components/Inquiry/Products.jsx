@@ -210,8 +210,8 @@ export default function Products() {
                   </p> */}
 
                   <p className="text-lg font-bold text-black mt-3">
-                    <span className="text-lg">&#8377;</span> {product.price}{" "}
-                    <span className="text-sm">/KG</span>
+                    {/* <span className="text-lg">&#8377;</span> {product.price}{" "} */}
+                    {/* <span className="text-sm">/KG</span> */}
                   </p>
 
                   {/* Buttons */}

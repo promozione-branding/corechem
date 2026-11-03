@@ -26,7 +26,7 @@ export default function Inquiry() {
       <Whychoose2></Whychoose2>
 
       <CTAL></CTAL>
-      <Industry></Industry>
+      {/* <Industry></Industry> */}
       <Contact></Contact>
       <BCTA></BCTA>
 

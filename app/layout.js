@@ -1,6 +1,5 @@
 import "./globals.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
-// import StickyFooter from "@/components/StickyFooter";
 import Whatsapp from "@/components/Whatsapp";
 import ToastProvider from "@/components/ToastProvider";
 
@@ -9,7 +8,8 @@ import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata = {
@@ -33,12 +33,11 @@ export default function RootLayout({ children }) {
           content="IucxGfPZSGl_kyppvob4UBS3U41pV-Daq8NKBrMOUno"
         />
 
-        {/* Meta Pixel Verification */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18212761323"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-ads" strategy="afterInteractive">
+        <Script id="google-ads" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -49,7 +48,7 @@ export default function RootLayout({ children }) {
         </Script>
 
         {/* Google Tag Manager */}
-        <Script id="gtm-script" strategy="beforeInteractive">
+        <Script id="gtm-script" strategy="lazyOnload">
           {`
             (function(w,d,s,l,i){
               w[l]=w[l]||[];
@@ -66,7 +65,7 @@ export default function RootLayout({ children }) {
         </Script>
 
         {/* Microsoft Clarity */}
-        <Script id="microsoft-clarity" strategy="afterInteractive">
+        <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){
@@ -80,10 +79,6 @@ export default function RootLayout({ children }) {
             })(window, document, "clarity", "script", "x2q5cnroj9");
           `}
         </Script>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-          rel="stylesheet"
-        />
       </head>
 
       <body className={`${poppins.className} antialiased`}>
@@ -102,7 +97,6 @@ export default function RootLayout({ children }) {
         <Whatsapp />
 
         <LayoutWrapper>{children}</LayoutWrapper>
-        {/* <StickyFooter></StickyFooter> */}
       </body>
     </html>
   );

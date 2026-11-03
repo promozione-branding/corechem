@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { preload } from "react-dom";
+import { getImageProps } from "next/image";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 
@@ -14,15 +15,34 @@ const ContactForm = dynamic(() => import("../Popup"), {
   loading: () => null,
 });
 
+// Hero banners. These are the files that are actually committed in /public.
+// (The previous code pointed at /corechem-1-m.webp and /corechem-2-d.webp,
+// which do not exist in the repo.) Going through next/image gives a correctly
+// sized, cached, AVIF/WebP version for each screen instead of the raw file.
+const HERO_ALT = "Corechem Corporation Chemical Products";
+const heroCommon = { fill: true, sizes: "100vw", quality: 70, alt: HERO_ALT };
+
 export default function Hero() {
+  const {
+    props: { srcSet: desktopSrcSet, src: desktopSrc },
+  } = getImageProps({ ...heroCommon, src: "/corechem-2.webp" });
+
+  const {
+    props: { srcSet: mobileSrcSet, src: mobileSrc, ...mobileImgProps },
+  } = getImageProps({ ...heroCommon, src: "/corechem-1.webp", priority: true });
+
   // Preload ONLY the hero image that matches the viewport
-  preload("/corechem-1-m.webp", {
+  preload(mobileSrc, {
     as: "image",
+    imageSrcSet: mobileSrcSet,
+    imageSizes: "100vw",
     fetchPriority: "high",
     media: "(max-width: 767px)",
   });
-  preload("/corechem-2-d.webp", {
+  preload(desktopSrc, {
     as: "image",
+    imageSrcSet: desktopSrcSet,
+    imageSizes: "100vw",
     fetchPriority: "high",
     media: "(min-width: 768px)",
   });
@@ -101,14 +121,23 @@ export default function Hero() {
       <section className="relative h-[390px] w-full overflow-hidden md:h-[95vh]">
         {/* One image element only -> the browser downloads just one file */}
         <picture>
-          <source media="(min-width: 768px)" srcSet="/corechem-2-d.webp" />
+          <source
+            media="(min-width: 768px)"
+            srcSet={desktopSrcSet}
+            sizes="100vw"
+          />
+          <source
+            media="(max-width: 767px)"
+            srcSet={mobileSrcSet}
+            sizes="100vw"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
           <img
-            src="/corechem-1-m.webp"
-            alt="Corechem Corporation Chemical Products"
-            width={828}
-            height={828}
+            {...mobileImgProps}
+            src={mobileSrc}
             fetchPriority="high"
-            decoding="async"
+            loading="eager"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover"
           />
         </picture>

@@ -8,7 +8,11 @@ import "swiper/css/navigation";
 import { FaArrowRight, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
-import ContactForm from "../Popup";
+import dynamic from "next/dynamic";
+const ContactForm = dynamic(() => import("../Popup"), {
+  ssr: false,
+  loading: () => null,
+});
 import Category from "./Category";
 import Image from "next/image";
 import { handleWhatsappClick } from "@/lib/track";

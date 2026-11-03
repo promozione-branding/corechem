@@ -191,6 +191,7 @@ export default function Footer() {
           src="/trustseal.webp"
           alt="Trust Elite Certificate"
           fill
+          sizes="320px"
           className="object-contain"
         />
       </div>

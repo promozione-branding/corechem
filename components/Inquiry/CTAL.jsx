@@ -17,7 +17,7 @@ export default function CTAL() {
               src="/cta.webp"
               alt="Garbage Bags Manufacturing"
               fill
-              sizes="(max-width: 768px) 100vw, 420px"
+              priority
               className="object-cover"
             />
           </div>

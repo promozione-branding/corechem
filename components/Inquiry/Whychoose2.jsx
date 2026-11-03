@@ -8,11 +8,7 @@ import {
   FaBoxOpen,
   FaHeadset,
 } from "react-icons/fa";
-import dynamic from "next/dynamic";
-const ContactForm = dynamic(() => import("../Popup"), {
-  ssr: false,
-  loading: () => null,
-});
+import ContactForm from "../Popup";
 import { useState } from "react";
 
 export default function Whychoose2() {
@@ -39,7 +35,6 @@ export default function Whychoose2() {
                 src="/cta.webp" // replace with your image
                 alt="Chemical Laboratory"
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
               />
             </div>

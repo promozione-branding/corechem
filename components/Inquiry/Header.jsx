@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -16,16 +17,9 @@ import {
   X,
 } from "lucide-react";
 import { FaPhoneAlt, FaWhatsapp, FaClipboardList } from "react-icons/fa";
-import dynamic from "next/dynamic";
+import ContactForm from "../Popup";
 import { handleCallClick } from "@/lib/track";
 import PriceMarquee from "./PriceMarquee";
-
-// Popup form (axios + toast + form state) is only rendered after the 5s
-// auto-open or a click, so keep it out of the initial bundle.
-const ContactForm = dynamic(() => import("../Popup"), {
-  ssr: false,
-  loading: () => null,
-});
 
 export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -99,7 +93,6 @@ export default function Header() {
               width={260}
               height={100}
               priority
-              sizes="(max-width: 640px) 240px, (max-width: 1024px) 220px, 340px"
               className="h-auto w-[160px] sm:w-[220px] lg:w-[340px] sm:scale-100 scale-150"
             />
             <p className="md:hidden block absolute top-26.5 left-6 text-[8px] text-black">

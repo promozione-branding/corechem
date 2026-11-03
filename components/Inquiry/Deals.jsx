@@ -190,4 +190,4 @@ export default function Deals() {
       {isOpen && <ContactForm isOpen={isOpen} setIsOpen={setIsOpen} />}
     </>
   );
-}
+} 

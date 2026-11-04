@@ -36,7 +36,6 @@ const products = [
     desc: "High Weather Resistance Titanium Dioxide.",
     price: "257",
   },
-
   {
     id: "titanium-dioxide-kronos-r2220",
     image: "/bowl5.webp",
@@ -53,7 +52,6 @@ const products = [
     desc: "Premium Excellent Whiteness Titanium Dioxide",
     price: "290",
   },
-
   {
     id: "titanium-dioxide-r248",
     image: "/BOWL7.webp",
@@ -66,6 +64,12 @@ const products = [
 
 export default function Deals() {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const openModal = (product) => {
+    setSelectedProduct(product);
+    setIsOpen(true);
+  };
 
   return (
     <>
@@ -79,33 +83,6 @@ export default function Deals() {
             <p className="text-[#c8921c] md:text-2xl mt-2">Our Products</p>
           </div>
 
-          {/* Mobile & Tablet Grid */}
-          {/* <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:hidden">
-          {categories.map((category, index) => (
-            <CategoryCard key={index} category={category} />
-          ))}
-        </div>
-
-        {/* Desktop Slider */}
-          {/* <div className="hidden lg:block">
-          <Swiper
-            modules={[Autoplay]}
-            slidesPerView={5}
-            spaceBetween={20}
-            loop={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-            }}
-            speed={1000}
-          >
-            {categories.map((category, index) => (
-              <SwiperSlide key={index}>
-                <CategoryCard category={category} />
-              </SwiperSlide>
-            ))}
-          </Swiper> */}
-          {/* </div> */}
           <div className="w-full overflow-hidden">
             <Swiper
               modules={[Autoplay]}
@@ -117,29 +94,22 @@ export default function Deals() {
                 disableOnInteraction: false,
               }}
               breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                },
-                640: {
-                  slidesPerView: 1.3,
-                },
-                768: {
-                  slidesPerView: 2,
-                },
-                1024: {
-                  slidesPerView: 3,
-                },
+                0: { slidesPerView: 1 },
+                640: { slidesPerView: 1.3 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
               }}
               className="!overflow-visible"
             >
               {products.map((item) => (
                 <SwiperSlide key={item?.id}>
-                  <Link
-                    href={`/inquiry/${item?.id}`}
-                    className="h-[280px] md:h-[400px] bg-[#f3f4f6] border border-[#ececec] rounded-[10px]  py-2 px-2  transition-all duration-300"
+                  {/* Changed: div with onClick instead of Link */}
+                  <div
+                    onClick={() => openModal(item)}
+                    className="h-[280px] md:h-[400px] bg-[#f3f4f6] border border-[#ececec] rounded-[10px] py-2 px-2 transition-all duration-300 cursor-pointer"
                   >
-                    <div className="flex flex-row gap-2 ">
-                      <div className="flex border-[#02224b] m-2 border-2 rounded-2xl  justify-center">
+                    <div className="flex flex-row gap-2">
+                      <div className="flex border-[#02224b] m-2 border-2 rounded-2xl justify-center">
                         <Image
                           src={item.image}
                           alt="powder"
@@ -158,21 +128,21 @@ export default function Deals() {
                         <h3 className="text-[#10254d] font-bold text-[25px] mt-1">
                           {item.code}
                         </h3>
-                        <p className="text-lg font-bold text-black mt-3">
-                          <span className="text-lg">&#8377;</span> {item.price}{" "}
-                          <span className="text-sm">/KG</span>
-                        </p>
 
                         <p className="mt-3 text-black text-[15px] leading-[24px]">
                           {item.desc}
                         </p>
 
+                        {/* WhatsApp link - stopPropagation prevents modal from opening */}
                         <Link
                           onClick={(e) => {
                             e.stopPropagation();
-                            handleWhatsappClick({ source: "Website inquiry page", obj: item.grade })
+                            handleWhatsappClick({
+                              source: "Website inquiry page",
+                              obj: item.grade,
+                            });
                           }}
-                           href="https://wa.me/919818544039"
+                          href="https://wa.me/919818544039"
                           className="mt-5 whitespace-nowrap flex items-center justify-around gap-2 text-green-500 text-[15px] font-[700]"
                         >
                           Get WhatsApp
@@ -180,14 +150,21 @@ export default function Deals() {
                         </Link>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
         </div>
       </section>
-      {isOpen && <ContactForm isOpen={isOpen} setIsOpen={setIsOpen} />}
+      {/* Pass selected product to popup if it accepts it */}
+      {isOpen && (
+        <ContactForm
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          product={selectedProduct}
+        />
+      )}
     </>
   );
-} 
+}

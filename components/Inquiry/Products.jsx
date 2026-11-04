@@ -62,32 +62,12 @@ const product = [
     desc: "Premium titanium dioxide with excellent opacity.",
     price: "290",
   },
-  // {
-  //   id: "titanium-dioxide-r248",
-  //   image: "/BOWL7.webp",
-  //   grade: "Titanium dioxide 248",
-  //   code: "R-248",
-  //   desc: "Premium titanium dioxide with excellent opacity.",
-  // },
 ];
-
-
-
-//  const products = [
-//     "Titanium Dioxide",
-//     "Titanium Dioxide Rutile",
-//     "Color Pigment",
-//     "Pigment Powder",
-//     "Lithopone",
-//     "Caustic Soda",
-//     "Calcium Carbonate",
-//     "Optical Brightener",
-//     "Carbon Black",
-//   ];
 
 export default function Products() {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -102,6 +82,11 @@ export default function Products() {
       ...form,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const openModal = (product) => {
+    setSelectedProduct(product);
+    setIsOpen(true);
   };
 
   const handleSubmit = async (e) => {
@@ -155,6 +140,7 @@ export default function Products() {
       setLoading(false);
     }
   };
+
   return (
     <section className="pt-4 md:pt-14 bg-white">
       <div className="max-w-7xl mx-auto px-4 py-3">
@@ -184,12 +170,13 @@ export default function Products() {
         >
           {product.map((product) => (
             <SwiperSlide key={product.id}>
-              <Link
-                href={`/inquiry/${product.id}`}
-                className="  rounded-xl shadow-sm hover:shadow-lg transition bg-white "
+              {/* Changed: div with onClick instead of Link */}
+              <div
+                onClick={() => openModal(product)}
+                className="rounded-xl shadow-sm hover:shadow-lg transition bg-white cursor-pointer"
               >
                 {/* Image */}
-                <div className=" bg-gray-100 flex items-center justify-center">
+                <div className="bg-gray-100 flex items-center justify-center">
                   <Image
                     height={100}
                     width={100}
@@ -205,9 +192,9 @@ export default function Products() {
                     {product.grade}
                   </h3>
 
-                  {/* {/* <p className="text-sm text-gray-500 mt-1">
+                  <p className="text-sm text-gray-500 mt-1">
                     Code: {product.code}
-                  </p> */}
+                  </p>
 
                   <p className="text-lg font-bold text-black mt-3">
                     {/* <span className="text-lg">&#8377;</span> {product.price}{" "} */}
@@ -217,32 +204,39 @@ export default function Products() {
                   {/* Buttons */}
                   <div className="flex gap-3 mt-5">
                     <button
-                      onClick={() => setIsOpen(true)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openModal(product);
+                      }}
                       className="flex-1 text-center bg-black text-white py-2 rounded-lg text-lg hover:bg-gray-800"
                     >
                       View Details
                     </button>
 
                     <Link
-                        href="https://wa.me/919818544039"
+                      href="https://wa.me/919818544039"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleWhatsappClick({ source: "Website inquiry page", obj: product.grade })
+                        handleWhatsappClick({
+                          source: "Website inquiry page",
+                          obj: product.grade,
+                        });
                       }}
                       target="_blank"
-                      className="flex items-center justify-center gap-2 flex-1 bg-green-600 text-white py-4 rounded-lg text-lg   hover:bg-green-700"
+                      className="flex items-center justify-center gap-2 flex-1 bg-green-600 text-white py-4 rounded-lg text-lg hover:bg-green-700"
                     >
                       <FaWhatsapp className="text-3xl" /> WhatsApp
                     </Link>
                   </div>
                 </div>
-              </Link>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
+
       <section className="relative overflow-hidden bg-gradient-to-r from-[#062347] to-[#0a3a6e] py-4 md:py-6">
-        <div className="container mx-auto px-4 py-4 ">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col items-center justify-between gap-5 md:py-6 rounded-3xl border border-[#c8921c]/30 bg-white/10 px-8 py-8 backdrop-blur-md md:flex-row">
             <div>
               <h2 className="text-2xl font-bold text-white md:text-3xl">
@@ -255,15 +249,17 @@ export default function Products() {
             </div>
 
             <Link
-                href="https://wa.me/919818544039"
-              onClick={() => handleWhatsappClick({ source: "Website inquiry page", obj: "N/A" })}
+              href="https://wa.me/919818544039"
+              onClick={() =>
+                handleWhatsappClick({
+                  source: "Website inquiry page",
+                  obj: "N/A",
+                })
+              }
               target="_blank"
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[#c8921c] to-[#e6b53a] px-5 py-3 md:px-8 md:py-4 font-semibold text-white shadow-[0_10px_30px_rgba(200,146,28,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(200,146,28,0.5)]"
             >
-              {/* Shine Effect */}
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
-
-              {/* Pulse Dot */}
 
               <FaWhatsapp className="relative animate-bounce text-2xl md:text-3xl" />
 
@@ -271,93 +267,22 @@ export default function Products() {
                 Chat With Us on WhatsApp
               </span>
 
-              <FaArrowRight className="relative  text-sm transition-transform duration-300 group-hover:translate-x-1" />
+              <FaArrowRight className="relative text-sm transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
 
-        {/* Form Below Banner */}
-        {/* <div className="bg-[#f8f8f8] md:hidden px-4 py-4">
-          <div className="rounded-3xl bg-white p-5 shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
-            <h3 className="text-center text-xl font-bold text-[#062347]">
-              Request a Free Quote
-            </h3>
-
-            <p className="mt-2 text-center text-sm text-gray-500">
-              Fill out the form and our team will contact you shortly.
-            </p>
-
-            <form onSubmit={handleSubmit} className="mt-2 space-y-1">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={form.name}
-                onChange={handleChange}
-                required
-                className="w-full rounded-xl border p-2.5 outline-none focus:border-[#c8921c]"
-              />
-
-              <input
-                type="tel"
-                name="phone"
-                maxLength={10}
-                placeholder="Phone Number"
-                value={form.phone}
-                onChange={handleChange}
-                required
-                className="w-full rounded-xl border p-2.5 outline-none focus:border-[#c8921c]"
-              />
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={form.email}
-                onChange={handleChange}
-                required
-                className="w-full rounded-xl border p-2.5 outline-none focus:border-[#c8921c]"
-              />
-
-              <select
-                name="product"
-                value={form.product}
-                onChange={handleChange}
-                required
-                className="w-full rounded-xl border p-2.5 outline-none focus:border-[#c8921c]"
-              >
-                <option value="">Select Product</option>
-
-                {products.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-
-              <textarea
-                name="message"
-                rows="3"
-                placeholder="Tell us your requirements..."
-                value={form.message}
-                onChange={handleChange}
-                required
-                className="w-full rounded-xl border p-2.5 outline-none focus:border-[#c8921c]"
-              />
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full rounded-xl bg-[#c8921c] py-3 font-semibold text-white transition hover:bg-[#b88418]"
-              >
-                {loading ? "Submitting..." : "Get Free Quote"}
-              </button>
-            </form>
-          </div>
-        </div> */}
         <Category />
       </section>
-      {isOpen && <ContactForm isOpen={isOpen} setIsOpen={setIsOpen} />}
+
+      {/* Updated: Pass selected product to popup */}
+      {isOpen && (
+        <ContactForm
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          product={selectedProduct}
+        />
+      )}
     </section>
   );
-}
+}     

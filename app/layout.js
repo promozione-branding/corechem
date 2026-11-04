@@ -33,11 +33,11 @@ export default function RootLayout({ children }) {
           content="IucxGfPZSGl_kyppvob4UBS3U41pV-Daq8NKBrMOUno"
         />
 
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18212761323"
-          strategy="lazyOnload"
+       <Script
+         src="https://www.googletagmanager.com/gtag/js?id=AW-18212761323"
+         strategy="afterInteractive"
         />
-        <Script id="google-ads" strategy="lazyOnload">
+        <Script id="google-ads" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -48,7 +48,7 @@ export default function RootLayout({ children }) {
         </Script>
 
         {/* Google Tag Manager */}
-        <Script id="gtm-script" strategy="lazyOnload">
+<Script id="gtm-script" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){
               w[l]=w[l]||[];
@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
         </Script>
 
         {/* Microsoft Clarity */}
-        <Script id="microsoft-clarity" strategy="lazyOnload">
+<Script id="microsoft-clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){

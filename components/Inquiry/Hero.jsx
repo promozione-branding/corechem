@@ -1,14 +1,17 @@
+
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 
+// Load Deals only when the user scrolls near that section
 const Deals = dynamic(() => import("./Deals"), {
   loading: () => null,
 });
 
+// Popup is loaded only when opened
 const ContactForm = dynamic(() => import("../Popup"), {
   ssr: false,
   loading: () => null,
@@ -17,6 +20,9 @@ const ContactForm = dynamic(() => import("../Popup"), {
 export default function Hero() {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showDeals, setShowDeals] = useState(false);
+
+  const dealsRef = useRef(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -38,6 +44,30 @@ export default function Hero() {
     "Carbon Black",
   ];
 
+  // Lazy load Deals when approaching viewport
+  useEffect(() => {
+    const element = dealsRef.current;
+
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowDeals(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: "300px",
+      }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Form input handler
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -47,6 +77,7 @@ export default function Hero() {
     }));
   };
 
+  // Submit inquiry
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -58,39 +89,42 @@ export default function Hero() {
     try {
       setLoading(true);
 
-      const response = await fetch("https://brandbnalo.com/api/form/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          platform: "Corechem Corporation",
-          platformEmail: "corechemcorporation@gmail.com",
-           supplierToken: "6a1965202b56a9ede272a9ca",
-          name: form.name,
-          phone: form.phone,
-          email: form.email,
-          product: form.product,
-          message: form.message,
-          place: "Website Landing Page",
-        }),
-      });
+      const response = await fetch(
+        "https://brandbnalo.com/api/form/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            platform: "Corechem Corporation",
+            platformEmail: "corechemcorporation@gmail.com",
+            supplierToken: "6a1965202b56a9ede272a9ca",
+            name: form.name,
+            phone: form.phone,
+            email: form.email,
+            product: form.product,
+            message: form.message,
+            place: "Website Landing Page",
+          }),
+        }
+      );
 
-      if (response.ok) {
-        toast.success("Inquiry Submitted Successfully!");
-
-        setForm({
-          name: "",
-          phone: "",
-          email: "",
-          product: "",
-          message: "",
-        });
-      } else {
-        toast.error("Failed to submit inquiry");
+      if (!response.ok) {
+        throw new Error("Failed to submit inquiry");
       }
+
+      toast.success("Inquiry Submitted Successfully!");
+
+      setForm({
+        name: "",
+        phone: "",
+        email: "",
+        product: "",
+        message: "",
+      });
     } catch (error) {
-      console.error(error);
+      console.error("Form submission error:", error);
       toast.error("Server error. Please try again.");
     } finally {
       setLoading(false);
@@ -99,30 +133,49 @@ export default function Hero() {
 
   return (
     <>
-      {/* ================= DESKTOP HERO ================= */}
-      <section className="relative hidden  w-full overflow-hidden md:block md:h-[95vh] ">
-        {/* Optimized Background Image */}
-        <Image
-          src="/corechem-2.webp"
-          alt="Corechem Corporation Chemical Products"
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          className="object-cover "
-        />
+      {/* ================= HERO SECTION ================= */}
 
-        {/* Optional dark overlay */}
-        <div className="absolute inset-0 bg-black/5" />
+      <section className="relative w-full overflow-hidden h-[390px] md:h-[95vh] min-h-[390px]">
 
-        {/* Quote Form */}
-        <div className="absolute right-5 top-1/2 z-10 w-[340px] -translate-y-1/2 ">
+        {/* Responsive Hero Image */}
+        <picture className="absolute inset-0 block">
+          {/* Mobile image */}
+          <source
+            media="(max-width: 767px)"
+            srcSet="/corechem-1.webp"
+            type="image/webp"
+          />
+
+          {/* Desktop image */}
+          <Image
+            src="/corechem-2.webp"
+            alt="Corechem Corporation Chemical Products"
+            fill
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+            quality={85}
+            className="object-cover object-center"
+          />
+        </picture>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+
+        {/* ================= DESKTOP QUOTE FORM ================= */}
+
+        <div className="absolute right-5 top-1/2 z-10 hidden w-[340px] -translate-y-1/2 md:block lg:right-10">
+
           <div className="rounded-3xl bg-white p-5 shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
+
             <h3 className="text-center text-2xl font-bold text-[#062347]">
               Request a Free Quote
             </h3>
 
-            <form onSubmit={handleSubmit} className="mt-5 space-y-3">
+            <form
+              onSubmit={handleSubmit}
+              className="mt-5 space-y-3"
+            >
               <input
                 type="text"
                 name="name"
@@ -141,6 +194,7 @@ export default function Hero() {
                 value={form.phone}
                 onChange={(e) => {
                   const value = e.target.value.replace(/\D/g, "");
+
                   if (value.length <= 10) {
                     setForm((prev) => ({
                       ...prev,
@@ -200,30 +254,30 @@ export default function Hero() {
                 {loading ? "Submitting..." : "Get Free Quote"}
               </button>
             </form>
+
           </div>
         </div>
+
+        {/* ================= MOBILE QUOTE BUTTON ================= */}
+
+     
+
       </section>
 
-      {/* ================= MOBILE HERO ================= */}
-      <section onClick={()=>{setIsOpen(true)}} className="relative block md:hidden">
-        <div className="relative aspect-[16/9] h-[390px] w-full overflow-hidden">
-          <Image
-            src="/corechem-1.webp"
-            alt="Corechem Corporation"
-            fill
-            priority
-            fetchPriority="high"
-            sizes="100vw"
-            className="object-cover"
-          />
-        </div>
-      </section>
+      {/* ================= BELOW FOLD DEALS ================= */}
 
-      {/* Below-fold content */}
-      <Deals />
+      <div ref={dealsRef}>
+        {showDeals && <Deals />}
+      </div>
 
-           {isOpen && <ContactForm isOpen={isOpen} setIsOpen={setIsOpen} />}
+      {/* ================= CONTACT POPUP ================= */}
 
+      {isOpen && (
+        <ContactForm
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
+      )}
     </>
   );
 }

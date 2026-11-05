@@ -81,7 +81,7 @@ const [isOpen, setIsOpen] = useState(false);
 useEffect(() => {
   setTimeout(() => {
     setIsOpen(true);
-  }, 5000);
+  }, 8000);
 
   
 }, []);

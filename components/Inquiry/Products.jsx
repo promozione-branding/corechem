@@ -142,7 +142,7 @@ export default function Products() {
   };
 
   return (
-    <section className="pt-4 md:pt-14 bg-white">
+    <section id="products" className="pt-4 md:pt-14 bg-white">
       <div className="max-w-7xl mx-auto px-4 py-3">
         {/* Heading */}
         <div className="text-center mb-5 md:mb-10">
@@ -257,7 +257,7 @@ export default function Products() {
                 })
               }
               target="_blank"
-              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[#c8921c] to-[#e6b53a] px-5 py-3 md:px-8 md:py-4 font-semibold text-white shadow-[0_10px_30px_rgba(200,146,28,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(200,146,28,0.5)]"
+              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[#00a63e] to-[#00a63e] px-5 py-3 md:px-8 md:py-4 font-semibold text-white shadow-[0_10px_30px_rgba(200,146,28,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(200,146,28,0.5)]"
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
 

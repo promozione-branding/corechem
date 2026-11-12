@@ -20,3 +20,13 @@ ol {
   list-style-type: decimal;
   padding-left: 1.5rem;
 }
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+div[id] {
+  scroll-margin-top: 90px;
+}

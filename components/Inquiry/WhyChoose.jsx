@@ -41,7 +41,7 @@ export default function WhyChoose() {
   ];
 
   return (
-    <section className="bg-[#f8f8f8] py-6 md:py-10">
+    <section id="about" className="bg-[#f8f8f8] py-6 md:py-10">
       <div className="max-w-7xl mx-auto px-4">
 
         {/* Desktop Grid */}

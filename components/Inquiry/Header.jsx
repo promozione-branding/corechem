@@ -117,7 +117,7 @@ export default function Header() {
             </Link>
 
             <Link
-              href="/inquiry"
+              href="#about"
               className="font-semibold text-[17px] hover:text-[#c8921c]"
             >
               About Us
@@ -126,7 +126,7 @@ export default function Header() {
             {/* PRODUCTS */}
             <div className="group relative">
 
-              <Link href="/inquiry">
+              <Link href="#products">
 
 
                 <button className="flex items-center gap-2 font-semibold text-[17px] hover:text-[#c8921c]">
@@ -138,7 +138,7 @@ export default function Header() {
             </div>
 
             <Link
-              href="/inquiry"
+              href="#contact"
               className="font-semibold text-[17px] hover:text-[#c8921c]"
             >
               Contact Us

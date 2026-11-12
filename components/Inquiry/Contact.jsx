@@ -833,7 +833,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative overflow-hidden py-6 md:py-15">
+    <section id="contact" className="relative overflow-hidden py-6 md:py-15">
 
       {/* BACKGROUND */}
       <div

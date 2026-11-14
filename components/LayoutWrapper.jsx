@@ -18,6 +18,7 @@ export default function LayoutWrapper({ children }) {
   const hideLayout =
     pathname.startsWith("/studio") ||
     pathname.startsWith("/login") ||
+    pathname.startsWith("/bulk-inquiry") ||
     pathname.startsWith("/inquiry");
 
   return (

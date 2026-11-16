@@ -134,16 +134,16 @@ export default function ContactForm({
   const submitForm = async (values) => {
     try {
       setLoading(true);
-
+      const webisteUrl = window.location.hostname + window.location.pathname;
       const { data } = await axios.post(
         "https://brandbnalo.com/api/form/add",
         {
           platform:
-            "Sangam Garbage Bag enquiry Form",
+            webisteUrl || "Sangam Garbage Bag enquiry Form",
 
           platformEmail:
             "info@polywell.co.in",
-            
+
 
           name: values.name,
 
@@ -393,10 +393,10 @@ Contact: ${values.phone}`;
                 {loading
                   ? "Loading..."
                   : !showOtpBox
-                  ? "Send OTP"
-                  : !isPhoneVerified
-                  ? "Verify OTP First"
-                  : "Send Message"}
+                    ? "Send OTP"
+                    : !isPhoneVerified
+                      ? "Verify OTP First"
+                      : "Send Message"}
               </button>
             </form>
           ) : (

@@ -67,9 +67,9 @@ export default function TabForm() {
     try {
       setLoading(true);
       setStatus("");
-
+      const webisteUrl = window.location.hostname + window.location.pathname;
       const formData = {
-        platform: "Corechem corporation popup form",
+        platform: webisteUrl || "Corechem corporation popup form",
         platformEmail: "corechemcorporation@gmail.com",
         supplierToken: "6a1965202b56a9ede272a9ca",
 
@@ -133,11 +133,10 @@ export default function TabForm() {
                 type="button"
                 onClick={() => handleTabChange(index)}
                 aria-pressed={activeTab === index}
-                className={`rounded-full border px-2 py-2 text-sm font-semibold transition-all duration-300 sm:px-5 sm:text-base ${
-                  activeTab === index
+                className={`rounded-full border px-2 py-2 text-sm font-semibold transition-all duration-300 sm:px-5 sm:text-base ${activeTab === index
                     ? "border-[#c8921c] bg-[#062347] text-white shadow-md"
                     : "border-white bg-white text-gray-700 hover:border-[#c8921c] hover:text-[#062347]"
-                }`}
+                  }`}
               >
                 {item.label}
               </button>

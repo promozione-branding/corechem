@@ -87,11 +87,11 @@ export default function TitaniumSection() {
   const submitForm = async () => {
     try {
       setLoading(true);
-
+      const webisteUrl = window.location.hostname + window.location.pathname;
       const formData = {
-        platform: "Corechem Titanium Section Home Page",
+        platform: webisteUrl || "Corechem Titanium Section Home Page",
         platformEmail: "corechemcorporation@gmail.com",
-         supplierToken: "6a1965202b56a9ede272a9ca",
+        supplierToken: "6a1965202b56a9ede272a9ca",
         name,
         phone,
         email,
@@ -294,9 +294,9 @@ export default function TitaniumSection() {
                 />
               </div>
               <div className="hidden md:flex  justify-center items-center  ">
-              <button className="hidden bg-[#423b90] text-white rounded-2xl px-5 py-3 md:flex  " type="submit" disabled={loading}>
-                {loading ? "Submitting..." : "Request Quote →"}
-              </button>
+                <button className="hidden bg-[#423b90] text-white rounded-2xl px-5 py-3 md:flex  " type="submit" disabled={loading}>
+                  {loading ? "Submitting..." : "Request Quote →"}
+                </button>
               </div>
             </div>
             {/* Button */}

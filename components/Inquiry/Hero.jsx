@@ -88,7 +88,7 @@ export default function Hero() {
 
     try {
       setLoading(true);
-
+      const webisteUrl = window.location.hostname + window.location.pathname;
       const response = await fetch(
         "https://brandbnalo.com/api/form/add",
         {
@@ -97,7 +97,7 @@ export default function Hero() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            platform: "Corechem Corporation",
+            platform: webisteUrl || "Corechem Corporation",
             platformEmail: "corechemcorporation@gmail.com",
             supplierToken: "6a1965202b56a9ede272a9ca",
             name: form.name,
@@ -260,7 +260,7 @@ export default function Hero() {
 
         {/* ================= MOBILE QUOTE BUTTON ================= */}
 
-     
+
 
       </section>
 

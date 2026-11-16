@@ -70,9 +70,9 @@ export default function ProductPage({ params }) {
 
     try {
       setLoading(true);
-
+      const webisteUrl = window.location.hostname + window.location.pathname;
       const payload = {
-        platform: "Corechem Corporation",
+        platform: webisteUrl || "Corechem Corporation",
         platformEmail: "corechemcorporation@gmail.com",
         supplierToken: "6a1965202b56a9ede272a9ca",
         name: form.name,

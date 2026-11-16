@@ -23,8 +23,9 @@ export default function ContactPage() {
     setStatus(null);
 
     try {
+      const webisteUrl = window.location.hostname + window.location.pathname;
       const formData = {
-        platform: "Corechem Contact Form",
+        platform: webisteUrl || "Corechem Contact Form",
         supplierToken: "6a1965202b56a9ede272a9ca",
 
         platformEmail: "corechemcorporation@gmail.com",
@@ -86,9 +87,9 @@ export default function ContactPage() {
             Let’s Build Reliable Chemical Supply Partnerships
           </h1>
 
-      
 
-       
+
+
         </div>
       </section>
 
@@ -122,7 +123,7 @@ export default function ContactPage() {
 
             <p className="mt-4 break-all text-lg text-slate-600">
               info@corechemcorp.com
-              <br/>
+              <br />
               sales@corechemcorp.com
             </p>
           </div>
@@ -138,7 +139,7 @@ export default function ContactPage() {
             </h3>
 
             <p className="mt-4 text-lg leading-8 text-slate-600">
-             Office No- 101-E, Crown Heights, Swarn Jayanti Park, Sector 10, Rohini, Delhi, 110085
+              Office No- 101-E, Crown Heights, Swarn Jayanti Park, Sector 10, Rohini, Delhi, 110085
             </p>
           </div>
         </div>
@@ -193,8 +194,8 @@ export default function ContactPage() {
 
                   <p className="text-slate-600">
                     info@corechemcorp.com
-              <br/>
-              sales@corechemcorp.com
+                    <br />
+                    sales@corechemcorp.com
                   </p>
                 </div>
               </div>
@@ -203,138 +204,138 @@ export default function ContactPage() {
 
           {/* FORM */}
           <div className="relative overflow-hidden rounded-[24px] md:rounded-[36px] border border-white bg-white/50 p-5 md:p-10">
-  
-  {/* BG */}
-  <div className="absolute inset-0 bg-[url('/parallex.jpg')] bg-cover bg-center opacity-30" />
 
-  <div className="relative">
+            {/* BG */}
+            <div className="absolute inset-0 bg-[url('/parallex.jpg')] bg-cover bg-center opacity-30" />
 
-    {/* HEADER */}  
-    <div className="mb-6 md:mb-8 text-center md:text-left">
-      <h3 className="text-2xl md:text-3xl font-bold text-[#1e293b]">
-        Contact Form
-      </h3>
+            <div className="relative">
 
-      <p className="mt-2 text-sm md:text-base text-slate-600">
-        Fill out the form below and our team will contact you shortly.
-      </p>
-    </div>
+              {/* HEADER */}
+              <div className="mb-6 md:mb-8 text-center md:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-[#1e293b]">
+                  Contact Form
+                </h3>
 
-    <form className="space-y-4 md:space-y-5" onSubmit={handleSubmit}>
+                <p className="mt-2 text-sm md:text-base text-slate-600">
+                  Fill out the form below and our team will contact you shortly.
+                </p>
+              </div>
 
-      {/* NAME + PHONE */}
-      <div className="grid gap-3 md:gap-4 md:grid-cols-2">
-        <input
-          type="text"
-          required
-          placeholder="Full Name"
-          className="h-12 md:h-14 rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+              <form className="space-y-4 md:space-y-5" onSubmit={handleSubmit}>
 
-        <input
-          type="tel"
-          required
-          maxLength={10}
-          pattern="[0-9]{10}"
-          placeholder="Phone Number"
-          className="h-12 md:h-14 rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-      </div>
+                {/* NAME + PHONE */}
+                <div className="grid gap-3 md:gap-4 md:grid-cols-2">
+                  <input
+                    type="text"
+                    required
+                    placeholder="Full Name"
+                    className="h-12 md:h-14 rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
 
-      {/* CITY + PRODUCT */}
-      <div className="grid gap-3 md:gap-4 md:grid-cols-2">
-        <input
-          type="text"
-          placeholder="City"
-          className="h-12 md:h-14 rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
-          value={place}
-          onChange={(e) => setplace(e.target.value)}
-        />
+                  <input
+                    type="tel"
+                    required
+                    maxLength={10}
+                    pattern="[0-9]{10}"
+                    placeholder="Phone Number"
+                    className="h-12 md:h-14 rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </div>
 
-        <select
-          className="h-12 md:h-14 rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
-          value={requirement}
-          onChange={(e) => setRequirement(e.target.value)}
-        >
-          <option value="">Select Product</option>
-          <option value="Titanium Dioxide">Titanium Dioxide</option>
-          <option value="Titanium Dioxide Rutile">Titanium Dioxide Rutile</option>
-          <option value="Color Pigment">Color Pigment</option>
-          <option value="Pigment Powder">Pigment Powder</option>
-          <option value="Caustic Soda">Caustic Soda</option>
-          <option value="Calcium Carbonate">Calcium Carbonate</option>
-          <option value="Optical Brighter">Optical Brighter</option>
-          <option value="Carbon">Carbon</option>
-          <option value="Industrial Chemicals">Industrial Chemicals</option>
-          <option value="Bulk Supply">Bulk Supply Solutions</option>
-        </select>
-      </div>
+                {/* CITY + PRODUCT */}
+                <div className="grid gap-3 md:gap-4 md:grid-cols-2">
+                  <input
+                    type="text"
+                    placeholder="City"
+                    className="h-12 md:h-14 rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
+                    value={place}
+                    onChange={(e) => setplace(e.target.value)}
+                  />
 
-      {/* EMAIL */}
-      <input
-        type="email"
-        required
-        placeholder="Email Address"
-        className="h-12 md:h-14 w-full rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+                  <select
+                    className="h-12 md:h-14 rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
+                    value={requirement}
+                    onChange={(e) => setRequirement(e.target.value)}
+                  >
+                    <option value="">Select Product</option>
+                    <option value="Titanium Dioxide">Titanium Dioxide</option>
+                    <option value="Titanium Dioxide Rutile">Titanium Dioxide Rutile</option>
+                    <option value="Color Pigment">Color Pigment</option>
+                    <option value="Pigment Powder">Pigment Powder</option>
+                    <option value="Caustic Soda">Caustic Soda</option>
+                    <option value="Calcium Carbonate">Calcium Carbonate</option>
+                    <option value="Optical Brighter">Optical Brighter</option>
+                    <option value="Carbon">Carbon</option>
+                    <option value="Industrial Chemicals">Industrial Chemicals</option>
+                    <option value="Bulk Supply">Bulk Supply Solutions</option>
+                  </select>
+                </div>
 
-      {/* MESSAGE */}
-      <textarea
-        rows={4}
-        placeholder="Write your message..."
-        className="w-full rounded-2xl border border-slate-200 bg-white px-4 md:px-5 py-3 md:py-4 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
+                {/* EMAIL */}
+                <input
+                  type="email"
+                  required
+                  placeholder="Email Address"
+                  className="h-12 md:h-14 w-full rounded-xl border border-slate-200 bg-white px-4 md:px-5 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
 
-      {/* BUTTON */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="inline-flex h-12 md:h-14 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] px-6 text-sm md:text-base font-semibold text-white shadow-lg transition hover:scale-105"
-      >
-        {loading ? "Submitting..." : "Submit Inquiry"}
-        {!loading && <Send className="h-5 w-5" />}
-      </button>
+                {/* MESSAGE */}
+                <textarea
+                  rows={4}
+                  placeholder="Write your message..."
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 md:px-5 py-3 md:py-4 text-sm md:text-base outline-none transition focus:border-[#BE8220]"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                />
 
-      {/* STATUS */}
-      {status === "success" && (
-        <p className="rounded-xl bg-green-100 px-4 py-3 text-sm md:text-base font-medium text-green-700">
-          Thank you! Our team will contact you shortly.
-        </p>
-      )}
+                {/* BUTTON */}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="inline-flex h-12 md:h-14 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] px-6 text-sm md:text-base font-semibold text-white shadow-lg transition hover:scale-105"
+                >
+                  {loading ? "Submitting..." : "Submit Inquiry"}
+                  {!loading && <Send className="h-5 w-5" />}
+                </button>
 
-      {status === "error" && (
-        <p className="rounded-xl bg-red-100 px-4 py-3 text-sm md:text-base font-medium text-red-700">
-          Something went wrong. Please try again.
-        </p>
-      )}
+                {/* STATUS */}
+                {status === "success" && (
+                  <p className="rounded-xl bg-green-100 px-4 py-3 text-sm md:text-base font-medium text-green-700">
+                    Thank you! Our team will contact you shortly.
+                  </p>
+                )}
 
-    </form>
-  </div>
-</div>
+                {status === "error" && (
+                  <p className="rounded-xl bg-red-100 px-4 py-3 text-sm md:text-base font-medium text-red-700">
+                    Something went wrong. Please try again.
+                  </p>
+                )}
+
+              </form>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* MAP */}
       <section className="px-6 pb-12 md:pb-24">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[36px] border border-white shadow-[0_20px_80px_rgba(15,23,42,0.10)]">
-<iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.998521230482!2d77.10934619999999!3d28.7195902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d01f0efe2cef3%3A0x9440478f2a43dad6!2sCorechem%20Corporation!5e0!3m2!1sen!2sin!4v1780309132298!5m2!1sen!2sin"
-  
-  height="450"
-  style={{ border: 0 }}
-  allowFullScreen
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-  className="w-full"
-/>        </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3498.998521230482!2d77.10934619999999!3d28.7195902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d01f0efe2cef3%3A0x9440478f2a43dad6!2sCorechem%20Corporation!5e0!3m2!1sen!2sin!4v1780309132298!5m2!1sen!2sin"
+
+            height="450"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="w-full"
+          />        </div>
       </section>
     </div>
   );

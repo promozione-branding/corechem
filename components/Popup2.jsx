@@ -121,9 +121,9 @@ export default function ContactForm2({ setIsOpen, isOpen }) {
   const submitForm = async () => {
     try {
       setLoading(true);
-
+      const webisteUrl = window.location.hostname + window.location.pathname;
       const formData = {
-        platform: "Corechem corporation popup form",
+        platform: webisteUrl || "Corechem corporation popup form",
         platformEmail: "corechemcorporation@gmail.com",
         supplierToken: "6a1965202b56a9ede272a9ca",
         name,

@@ -13,12 +13,18 @@ import {
   ChevronDown,
   ShieldCheck,
   Menu,
+  Certificate,
   X,
   Download,
 } from "lucide-react";
 
 import { categories } from "@/Data";
 import ContactForm from "../Popup";
+import { FaCertificate ,} from "react-icons/fa";
+import { AiTwotoneSafetyCertificate } from "react-icons/ai";
+
+
+
 
 export default function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -62,6 +68,14 @@ export default function Navbar() {
           >
             <Download className="h-4 w-4 text-[#F5F6F9]" />
             Download Brochure
+          </a>
+          <a
+            href="/Certificate.pdf"
+            download
+            className="flex underline items-center text-sm gap-2"
+          >
+            <AiTwotoneSafetyCertificate className="h-5 w-5 text-[#F5F6F9]" />
+            Certificate
           </a>
 
           <button

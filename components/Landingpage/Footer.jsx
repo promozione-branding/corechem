@@ -11,6 +11,7 @@ import {
   ArrowUpRight,
   FlaskConical,
   ChevronRight,
+  BadgeCheck,
 } from "lucide-react";
 
 const quickLinks = [
@@ -284,6 +285,13 @@ export default function Footer() {
                     className="transition-all duration-300 group-hover:rotate-45"
                   />
                 </a>
+               <a
+                  href="https://wa.me/919818544039"
+                  className="group mt-[24px] w-fit   flex h-[58px] items-center gap-[12px] rounded-full bg-gradient-to-r from-[#2B4D9D] to-[#4B3089] px-[26px] text-[14px] font-[700] uppercase tracking-[1px] text-white transition-all duration-300 hover:bg-white hover:text-[#111827]"
+                >
+                  View Certificate
+                  <BadgeCheck size={18} className="text-white" />
+                </a>
             </div>
           </div>
 
@@ -294,7 +302,9 @@ export default function Footer() {
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-[18px] text-[14px] text-white lg:justify-end">
-              <span className="h-[4px] w-[4px] rounded-full bg-white/20" />
+              
+            
+
 
               <span className="h-[4px] w-[4px] rounded-full bg-white/20" />
 
